@@ -26,42 +26,42 @@ export const Sidebar: React.FC = () => {
         </div>
         <p className="text-white/40 text-sm font-medium pl-11">Dashboard Preview v2.4</p>
       </div>
-      
+
       <div className="w-full h-px bg-white/5 my-2 mx-8 !w-auto" />
 
       {/* Scrollable Content */}
       <div className="flex-1 px-4 py-4 space-y-6">
-        
-        {/* User Section Header */}
+
+        {/* Maker Details */}
         <div className="px-4">
-          <h3 className="text-white text-lg font-bold leading-tight">User Details</h3>
-          <p className="text-white/40 text-sm mt-1">Configure your maker profile.</p>
+          <h3 className="text-white text-lg font-bold leading-tight">Maker Details</h3>
+          <p className="text-white/40 text-sm mt-1">Configure your profile for this session.</p>
         </div>
 
         {/* Inputs - Modular implementation */}
-        <InputGroup 
-          label="Name" 
-          icon="person" 
-          placeholder="Enter maker name" 
-          value={name} 
-          onChange={(e) => setName(e.target.value)} 
-        />
-        
-        <InputGroup 
-          label="Email" 
-          icon="mail" 
-          type="email"
-          placeholder="maker@example.com" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
+        <InputGroup
+          label="Name"
+          icon="person"
+          placeholder="Enter maker name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
 
-        <InputGroup 
-          label="Job Title" 
-          icon="work" 
-          placeholder="Lead Designer" 
-          value={jobTitle} 
-          onChange={(e) => setJobTitle(e.target.value)} 
+        <InputGroup
+          label="Email"
+          icon="mail"
+          type="email"
+          placeholder="maker@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <InputGroup
+          label="Job Title"
+          icon="work"
+          placeholder="Lead Designer"
+          value={jobTitle}
+          onChange={(e) => setJobTitle(e.target.value)}
         />
 
         <div className="w-full h-px bg-white/5 my-2 mx-4 !w-auto" />
@@ -73,7 +73,7 @@ export const Sidebar: React.FC = () => {
             {COLORS.map((c) => {
               const isActive = color === c.hex;
               return (
-                <button 
+                <button
                   key={c.hex}
                   onClick={() => setColor(c.hex)}
                   className={`
@@ -106,20 +106,8 @@ export const Sidebar: React.FC = () => {
       </div>
 
       {/* Sidebar Footer */}
-      <div className="p-6 mt-auto border-t border-white/5 bg-surface-dark/50 backdrop-blur-sm">
-        <div className="flex items-center gap-3">
-          <div 
-            className="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-white/10" 
-            style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuANsuY7aYSAKLIFxIhmZO_a1CmJy78prDj9NVmnZr9Q580IY6P7wfr26Yg6Mw6tRxVJcDaQKT5y2g2dq5nZVm51cYKT9jCbSnhHVBezEBkoVN3pDRqOMQwdi7cH5278WQfTG13GBA4uA5luX4WZ6k-dSCf3mpoZ3ZN-YCbXeG5XA0dpe7kDx_rZ-tLpNH3sxE7czIViwnTY6ALeVZrLOyCfEc4_BhRKzOtK0hVuWkMxLZfzgQ53ICcJkKT4kyJnbF_XEQbDA2SiS8E")' }}
-          />
-          <div className="flex flex-col">
-            <span className="text-sm font-bold text-white">{name}</span>
-            <span className="text-xs text-accent-teal">Pro Member</span>
-          </div>
-          <button className="ml-auto text-white/40 hover:text-white transition-colors">
-            <span className="material-symbols-outlined">settings</span>
-          </button>
-        </div>
+      <div className="p-6 mt-auto border-t border-white/5 bg-surface-dark/50 backdrop-blur-sm text-center">
+        <p className="text-xs text-white/20">© 2026 LinkedOut</p>
       </div>
     </aside>
   );

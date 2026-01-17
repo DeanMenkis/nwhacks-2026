@@ -1,0 +1,215 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {
+    Box,
+    ArrowRight,
+    PlayCircle,
+    CheckCircle,
+    Package,
+    Sliders,
+    Settings2
+} from 'lucide-react';
+
+const LandingPage: React.FC = () => {
+    return (
+        <div className="bg-background-dark text-white font-display overflow-x-hidden min-h-screen">
+            {/* Navigation */}
+            <nav className="fixed top-0 w-full z-50 bg-background-dark/80 backdrop-blur-lg border-b border-white/5">
+                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="size-10 bg-primary rounded-xl flex items-center justify-center shadow-glow">
+                            <Box className="text-white w-6 h-6" />
+                        </div>
+                        <h1 className="text-xl font-extrabold tracking-tight">LinkedOut</h1>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        {/* Get Started removed as requested */}
+                    </div>
+                </div>
+            </nav>
+
+            {/* Hero Header */}
+            <header className="relative pt-8 pb-20 lg:pt-12 lg:pb-32 overflow-hidden">
+                {/* Background Gradients */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
+                    <div className="absolute top-[-10%] left-[10%] w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] animate-pulse"></div>
+                    <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-accent-teal/10 rounded-full blur-[100px]"></div>
+                </div>
+
+                <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                    {/* Hero Content */}
+                    <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
+
+                        <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+                            Bring Your <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-hover to-accent-teal drop-shadow-sm">
+                                3D Ideas
+                            </span>{' '}
+                            to Life
+                        </h1>
+                        <p className="text-lg lg:text-xl text-white/60 mb-10 max-w-lg leading-relaxed">
+                            The cutest, modern dashboard for makers. Configure settings, preview in real-time, and
+                            export perfect 3MF files in seconds.
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                            <Link
+                                to="/app"
+                                className="w-full sm:w-auto bg-primary hover:bg-primary-hover active:scale-95 text-white px-8 py-4 rounded-2xl text-base font-bold transition-all shadow-glow hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 group"
+                            >
+                                Get Started
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+
+                        </div>
+
+
+                    </div>
+
+                    {/* Hero Visual (Cube Scene) */}
+                    <div className="relative h-[400px] lg:h-[600px] flex items-center justify-center perspective-container w-full">
+                        <div className="absolute inset-0 grid-floor pointer-events-none"></div>
+                        <div className="cube-scene animate-float">
+                            <div className="cube animate-spin-slow">
+                                <div className="cube-face face-front text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
+                                    FRONT
+                                </div>
+                                <div className="cube-face face-back text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
+                                    BACK
+                                </div>
+                                <div className="cube-face face-right text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
+                                    RIGHT
+                                </div>
+                                <div className="cube-face face-left text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
+                                    LEFT
+                                </div>
+                                <div className="cube-face face-top text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
+                                    TOP
+                                </div>
+                                <div className="cube-face face-bottom text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
+                                    BOTTOM
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        {/* Floating Export Card */}
+                        <div className="absolute bottom-1/4 left-0 lg:left-10 animate-float" style={{ animationDelay: '2s' }}>
+                            <div className="bg-surface-dark/80 backdrop-blur-md border border-white/10 p-4 rounded-2xl shadow-xl flex items-center gap-3">
+                                <div className="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+                                    <Package className="w-6 h-6" />
+                                </div>
+                                <div>
+                                    <div className="text-xs text-white/50 uppercase font-bold">Export</div>
+                                    <div className="text-sm font-bold text-white">Generative 3MF</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            {/* Features Section */}
+            <section className="py-24 bg-surface-dark/30 relative">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl lg:text-4xl font-extrabold mb-6">Everything you need to print</h2>
+                        <p className="text-lg text-white/50">
+                            Streamline your additive manufacturing process with our intuitive tools designed
+                            specifically for the modern maker community.
+                        </p>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {/* Feature 1 */}
+                        <div className="group bg-surface-dark border border-white/5 p-8 rounded-3xl hover:border-primary/50 transition-all duration-300 hover:shadow-glow hover:-translate-y-1">
+                            <div className="size-14 bg-gradient-to-br from-primary/20 to-transparent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/20">
+                                <Settings2 className="text-primary w-8 h-8" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">
+                                Easy Configuration
+                            </h3>
+                            <p className="text-white/50 leading-relaxed">
+                                Effortlessly setup your print jobs. Customize filament colors, job titles, and detailed
+                                parameters with our playful UI.
+                            </p>
+                        </div>
+
+                        {/* Feature 2 */}
+                        <div className="group bg-surface-dark border border-white/5 p-8 rounded-3xl hover:border-accent-teal/50 transition-all duration-300 hover:shadow-glow-teal hover:-translate-y-1">
+                            <div className="size-14 bg-gradient-to-br from-accent-teal/20 to-transparent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-accent-teal/20">
+                                <Box className="text-accent-teal w-8 h-8" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-3 text-white group-hover:text-accent-teal transition-colors">
+                                Live 3D Preview
+                            </h3>
+                            <p className="text-white/50 leading-relaxed">
+                                Visualize before you materialize. Our WebGL powered engine gives you a real-time,
+                                interactive preview of your print bed.
+                            </p>
+                        </div>
+
+                        {/* Feature 3 */}
+                        <div className="group bg-surface-dark border border-white/5 p-8 rounded-3xl hover:border-accent-pink/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,117,151,0.3)] hover:-translate-y-1">
+                            <div className="size-14 bg-gradient-to-br from-accent-pink/20 to-transparent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-accent-pink/20">
+                                <Package className="text-accent-pink w-8 h-8" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-3 text-white group-hover:text-accent-pink transition-colors">
+                                One-click 3MF Export
+                            </h3>
+                            <p className="text-white/50 leading-relaxed">
+                                From screen to machine in a single click. Generate production-ready 3MF files
+                                optimized for your specific hardware.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="py-24 relative overflow-hidden">
+                <div className="absolute inset-0 bg-primary/5"></div>
+                <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+                    <h2 className="text-4xl lg:text-5xl font-extrabold mb-8">Ready to start printing?</h2>
+                    <p className="text-xl text-white/60 mb-10">
+                        Join thousands of designers and engineers who use LinkedOut to manage their 3D workflow.
+                    </p>
+                    <Link
+                        to="/app"
+                        className="w-full sm:w-auto bg-primary hover:bg-primary-hover active:scale-95 text-white px-8 py-4 rounded-2xl text-base font-bold transition-all shadow-glow hover:shadow-xl hover:-translate-y-1 inline-flex items-center justify-center gap-2 group"
+                    >
+                        Get Started
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    <p className="mt-6 text-sm text-white/30">Completely free, no account required</p>
+                </div>
+            </section>
+
+            {/* Footer */}
+            <footer className="border-t border-white/5 bg-surface-dark py-12">
+                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+                        <Box className="w-5 h-5" />
+                        <span className="font-bold">LinkedOut</span>
+                    </div>
+                    <div className="flex gap-8 text-sm text-white/40">
+                        <a className="hover:text-white transition-colors" href="#">
+                            Features
+                        </a>
+                        <a className="hover:text-white transition-colors" href="#">
+                            Pricing
+                        </a>
+                        <a className="hover:text-white transition-colors" href="#">
+                            Blog
+                        </a>
+                        <a className="hover:text-white transition-colors" href="#">
+                            Contact
+                        </a>
+                    </div>
+                    <div className="text-sm text-white/20">© 2026 LinkedOut Inc.</div>
+                </div>
+            </footer>
+        </div>
+    );
+};
+
+export default LandingPage;

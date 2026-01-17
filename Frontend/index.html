@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Print Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LinkedOut</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
@@ -28,7 +32,7 @@
                     borderRadius: {
                         "DEFAULT": "0.5rem",
                         "lg": "1rem",
-                        "xl": "1.5rem", 
+                        "xl": "1.5rem",
                         "2xl": "2rem",
                         "full": "9999px"
                     },
@@ -45,18 +49,21 @@
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
-            background: #1d1a23; 
+            background: #1d1a23;
         }
+
         ::-webkit-scrollbar-thumb {
-            background: #48434c; 
+            background: #48434c;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
-            background: #784e97; 
+            background: #784e97;
         }
     </style>
-<script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "zustand": "https://esm.sh/zustand@^5.0.10",
@@ -69,10 +76,12 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-background-dark text-white font-display overflow-hidden h-screen">
+
+<body class="bg-background-dark text-white font-display">
     <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
