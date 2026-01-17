@@ -1,0 +1,5 @@
+{
+  "name": "Print Studio Dashboard",
+  "description": "A 3D printing dashboard featuring a maker profile configuration, filament selection, and a real-time React Three Fiber 3D preview.",
+  "requestFramePermissions": []
+}
