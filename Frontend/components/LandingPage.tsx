@@ -192,18 +192,7 @@ const LandingPage: React.FC = () => {
                         <span className="font-bold">LinkedOut</span>
                     </div>
                     <div className="flex gap-8 text-sm text-white/40">
-                        <a className="hover:text-white transition-colors" href="#">
-                            Features
-                        </a>
-                        <a className="hover:text-white transition-colors" href="#">
-                            Pricing
-                        </a>
-                        <a className="hover:text-white transition-colors" href="#">
-                            Blog
-                        </a>
-                        <a className="hover:text-white transition-colors" href="#">
-                            Contact
-                        </a>
+                        {/* Footer links removed as requested */}
                     </div>
                     <div className="text-sm text-white/20">© 2026 LinkedOut Inc.</div>
                 </div>
