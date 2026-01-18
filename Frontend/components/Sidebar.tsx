@@ -24,7 +24,7 @@ export const Sidebar: React.FC = () => {
           </div>
           <h1 className="text-xl font-extrabold tracking-tight">Print Studio</h1>
         </div>
-        <p className="text-white/40 text-sm font-medium pl-11">Dashboard Preview v2.4</p>
+        <p className="text-white/40 text-sm font-medium pl-11">Dashboard Preview v0.1</p>
       </div>
 
       <div className="w-full h-px bg-white/5 my-2 mx-8 !w-auto" />
@@ -34,15 +34,15 @@ export const Sidebar: React.FC = () => {
 
         {/* Maker Details */}
         <div className="px-4">
-          <h3 className="text-white text-lg font-bold leading-tight">Maker Details</h3>
-          <p className="text-white/40 text-sm mt-1">Configure your profile for this session.</p>
+          <h3 className="text-white text-lg font-bold leading-tight">Card Details</h3>
+          <p className="text-white/40 text-sm mt-1">Configure your parameters for the card.</p>
         </div>
 
         {/* Inputs - Modular implementation */}
         <InputGroup
           label="Name"
           icon="person"
-          placeholder="Enter maker name"
+          placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -51,15 +51,15 @@ export const Sidebar: React.FC = () => {
           label="Email"
           icon="mail"
           type="email"
-          placeholder="maker@example.com"
+          placeholder="[EMAIL_ADDRESS]"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <InputGroup
-          label="Job Title"
+          label="Bio"
           icon="work"
-          placeholder="Lead Designer"
+          placeholder="Electrical Engineering @ BCIT"
           value={jobTitle}
           onChange={(e) => setJobTitle(e.target.value)}
         />
