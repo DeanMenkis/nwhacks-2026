@@ -84,10 +84,14 @@ async def generate_card(request: CardRequest):
             font_path=DEFAULT_FONT_PATH
         )
 
-        # Create base mesh
-        box_mesh = trimesh.creation.box(extents=box_extents)
-        box_mesh.split()
-        carver.mesh = box_mesh  # Initialize carver mesh with the box
+        # Create base mesh with fillet
+        # Using 3mm as requested (or from request.design.filletRadius if preferred, likely 3)
+        fillet_radius = request.design.filletRadius if request.design.filletRadius > 0 else 3.0
+        # Hardcoding 3mm as per user request just to be safe it's applied "on every side"
+        fillet_radius = 3.0
+        
+        box_mesh = carver.generate_rounded_base(fillet_radius)
+        # carver.mesh is already set inside generate_rounded_base
 
         # Helper to map face to side
         def get_qr_side_position(face_str: str):
@@ -133,7 +137,7 @@ async def generate_card(request: CardRequest):
         qr_pos = request.positions.qrCode
         qr_side = get_qr_side_position(qr_pos.face)
 
-        carver.carve_qr(
+        box_mesh = carver.carve_qr(
             qr_pos.x,
             qr_pos.y,
             url=request.content.qrUrl,
@@ -149,12 +153,13 @@ async def generate_card(request: CardRequest):
 
         # Assemble Scene
         scene = trimesh.Scene()
-        scene.add_geometry(carver.mesh, node_name="card_body")
+        scene.add_geometry(box_mesh, node_name="card_body")
 
         for i, tm in enumerate(text_meshes_for_scene):
             scene.add_geometry(tm, node_name=f"text_{i}")
 
         scene.add_geometry(qr_mesh, node_name="qr_code")
+        # scene.show()
 
         # Export to 3MF in memory
         with tempfile.NamedTemporaryFile(suffix=".3mf", delete=False) as tmp:

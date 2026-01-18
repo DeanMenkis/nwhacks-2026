@@ -25,8 +25,10 @@ carver = Carver(
     qr_border=QR_BORDER,
 )
 
-box_mesh = trimesh.creation.box(extents=BOX_EXTENTS)
-box_mesh.split()
+# box_mesh = trimesh.creation.box(extents=BOX_EXTENTS)
+# box_mesh.split()
+# Use rounded base with 3mm radius
+box_mesh = carver.generate_rounded_base(3.0)
 
 try:
     box_mesh = carver.carve_text(

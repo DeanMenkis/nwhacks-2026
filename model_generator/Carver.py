@@ -205,3 +205,54 @@ class Carver:
             )
 
             return trimesh.load(result_path, force="mesh")
+
+    def generate_rounded_base(self, radius):
+        """Generates a base box with rounded corners (XY plane) using OpenSCAD."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            result_path = tmp_path / "base_rounded.stl"
+            scad_path = tmp_path / "base_rounded.scad"
+
+            width = self.box_extents[0]
+            height = self.box_extents[1]
+            thickness = self.box_extents[2]
+            
+            # OpenSCAD script for rounded box using hull of 4 cylinders
+            # Centered at origin
+            scad_script = f"""
+            w = {width};
+            h = {height};
+            d = {thickness};
+            r = {radius};
+
+            linear_extrude(height=d)
+                offset(r=r, $fn=60)
+                    square([w-2*r, h-2*r], center=true);
+            """
+            # Note: linear_extrude in OpenSCAD by default starts at z=0 and goes to z=d. 
+            # If we want it centered in Z (which trimesh.creation.box does), we should translate it.
+            # trimesh.creation.box is centered at origin [0,0,0].
+            # So z range is [-thickness/2, thickness/2].
+            # OpenSCAD linear_extrude with center=true centers it in Z.
+            
+            scad_script = f"""
+            w = {width};
+            h = {height};
+            d = {thickness};
+            r = {radius};
+
+            linear_extrude(height=d, center=true)
+                offset(r=r, $fn=60)
+                    square([w-2*r, h-2*r], center=true);
+            """
+
+            scad_path.write_text(scad_script, encoding="utf-8")
+
+            subprocess.run(
+                ["openscad", "-o", str(result_path), str(scad_path)],
+                check=True,
+            )
+
+            mesh = trimesh.load(result_path, force="mesh")
+            self.mesh = mesh
+            return mesh
