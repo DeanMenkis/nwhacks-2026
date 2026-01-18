@@ -7,33 +7,33 @@ import { CardModel } from './CardModel';
 // Predefined states for the dynamic rotation
 const DEMO_STATES = [
     {
-        name: "Sarah Smith",
-        jobTitle: "Software Engineer",
-        school: "MIT",
-        email: "sarah@tech.edu",
-        phoneNumber: "(555) 987-6543",
-        github: "github.com/sarah",
-        linkedin: "linkedin.com/in/sarah",
+        name: "Dean David Menkis",
+        jobTitle: "Electrical Engineering",
+        school: "@ BCIT",
+        email: "deanmenkis@gmail.com",
+        phoneNumber: "(236) 982 1553",
+        github: "",
+        linkedin: "",
         color: "#2DD4BF", // Teal
     },
     {
-        name: "Jordan Lee",
-        jobTitle: "Founder",
-        school: "Stanford",
-        email: "jordan@startup.io",
-        phoneNumber: "(555) 456-7890",
-        github: "github.com/jordan",
-        linkedin: "linkedin.com/in/jordan",
+        name: "Ilia Morozov",
+        jobTitle: "Firmware & Hardware Engineer",
+        school: "@BCIT",
+        email: "iliamorozim@gmail.com",
+        phoneNumber: "(778) 868 5019",
+        github: "github.com/frosterilia",
+        linkedin: "",
         color: "#F472B6", // Pink
     },
     {
-        name: "Mike Ross",
-        jobTitle: "Data Scientist",
-        school: "Berkeley",
-        email: "mike@data.ai",
-        phoneNumber: "(555) 234-5678",
-        github: "github.com/mike",
-        linkedin: "linkedin.com/in/mike",
+        name: "Nina Lu",
+        jobTitle: "Hacker",
+        school: "@ BCIT",
+        email: "nlu26@my.bcit.ca",
+        phoneNumber: "(778)) 892-2083",
+        github: "",
+        linkedin: "inkedin.com/in/ninaplaystime/",
         color: "#60A5FA", // Blue
     }
 ];

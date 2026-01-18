@@ -1,0 +1,58 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "timestamp": "2026-01-18T10:53:21.180Z",
+        "appName": "PrintMyCard"
+    },
+    "design": {
+        "color": "#784e97",
+        "font": "/fonts/Monocraft-ttf/Monocraft.ttf",
+        "fontColor": "#FFFFFF",
+        "filletRadius": 3,
+        "thickness": 1.6,
+        "dimensions": {
+            "width": 85,
+            "height": 54
+        }
+    },
+    "content": {
+        "name": "",
+        "email": "",
+        "jobTitle": "",
+        "phoneNumber": "",
+        "github": null,
+        "linkedin": null,
+        "qrUrl": "https://example.com"
+    },
+    "positions": {
+        "name": {
+            "x": -36.5,
+            "y": 21
+        },
+        "jobTitle": {
+            "x": -36.5,
+            "y": 13
+        },
+        "phone": {
+            "x": -36.5,
+            "y": -21
+        },
+        "email": {
+            "x": -36.5,
+            "y": -15
+        },
+        "github": {
+            "x": -36.5,
+            "y": -9
+        },
+        "linkedin": {
+            "x": -36.5,
+            "y": -3
+        },
+        "qrCode": {
+            "x": 0,
+            "y": 0,
+            "face": "back"
+        }
+    }
+}
