@@ -23,7 +23,6 @@ const LandingPage: React.FC = () => {
                         <h1 className="text-xl font-extrabold tracking-tight">LinkedOut</h1>
                     </div>
                     <div className="flex items-center gap-4">
-                        {/* Get Started removed as requested */}
                     </div>
                 </div>
             </nav>
@@ -43,20 +42,20 @@ const LandingPage: React.FC = () => {
                         <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
                             Bring Your <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-hover to-accent-teal drop-shadow-sm">
-                                3D Ideas
+                                LinkedIn
                             </span>{' '}
                             to Life
                         </h1>
                         <p className="text-lg lg:text-xl text-white/60 mb-10 max-w-lg leading-relaxed">
-                            The cutest, modern dashboard for makers. Configure settings, preview in real-time, and
-                            export perfect 3MF files in seconds.
+                            A modern dashboard to quickly design, create, and export 3D printed cards.
+                            Customizable, easy to use, and completely free.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                             <Link
                                 to="/app"
                                 className="w-full sm:w-auto bg-primary hover:bg-primary-hover active:scale-95 text-white px-8 py-4 rounded-2xl text-base font-bold transition-all shadow-glow hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 group"
                             >
-                                Get Started
+                                Create Your Card
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
 
