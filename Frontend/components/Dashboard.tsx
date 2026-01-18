@@ -12,6 +12,7 @@ export const Dashboard: React.FC = () => {
     name,
     email,
     jobTitle,
+    school,
     phoneNumber,
     github,
     linkedin,
@@ -37,6 +38,7 @@ export const Dashboard: React.FC = () => {
     const positions = {
       name: { x: xLeft, y: yTop },
       jobTitle: { x: xLeft, y: yTop - 8 },
+      school: { x: xLeft, y: yTop - 14 },
       phone: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING },
       email: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 6 },
       github: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 12 },
@@ -62,6 +64,7 @@ export const Dashboard: React.FC = () => {
         name,
         email,
         jobTitle,
+        school,
         phoneNumber,
         github: showGithub ? github : null,
         linkedin: showLinkedin ? linkedin : null,
