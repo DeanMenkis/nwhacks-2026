@@ -15,7 +15,8 @@ app = FastAPI()
 
 # Default constants
 # To change the font, set the CARD_FONT environment variable or change this default.
-DEFAULT_FONT = os.environ.get("CARD_FONT", "DejaVu Sans")
+DEFAULT_FONT = os.environ.get("CARD_FONT", "Monocraft")
+DEFAULT_FONT_PATH = os.path.join(os.path.dirname(__file__), "fonts/Monocraft-Bold.ttf")
 DEFAULT_DEPTH = 0.4
 DEFAULT_QR_MODULE_SIZE = 1.2
 DEFAULT_QR_BORDER = 2
@@ -39,8 +40,6 @@ class Content(BaseModel):
     email: str
     jobTitle: str
     phoneNumber: Optional[str] = ""
-    github: Optional[str] = None
-    linkedin: Optional[str] = None
     qrUrl: str
 
 
@@ -55,8 +54,6 @@ class PositionsMap(BaseModel):
     jobTitle: Position
     phone: Position
     email: Position
-    github: Position
-    linkedin: Position
     qrCode: Position
 
 
@@ -65,7 +62,6 @@ class CardRequest(BaseModel):
     design: Design
     content: Content
     positions: PositionsMap
-
 
 @app.post("/generate")
 async def generate_card(request: CardRequest):
@@ -76,7 +72,6 @@ async def generate_card(request: CardRequest):
         thickness = request.design.thickness
 
         # Dimensions array: [width, height, thickness]
-        # generator.py uses: BOX_EXTENTS = np.array([84.5, 54.0, 1.6])
         box_extents = np.array([width, height, thickness])
 
         # Initialize Carver
@@ -86,10 +81,10 @@ async def generate_card(request: CardRequest):
             DEFAULT_DEPTH,
             qr_module_size=DEFAULT_QR_MODULE_SIZE,
             qr_border=DEFAULT_QR_BORDER,
+            font_path=DEFAULT_FONT_PATH
         )
 
         # Create base mesh
-        # Note: box_extents in Carver seemingly expects [x, y, z]
         box_mesh = trimesh.creation.box(extents=box_extents)
         box_mesh.split()
         carver.mesh = box_mesh  # Initialize carver mesh with the box
@@ -101,9 +96,6 @@ async def generate_card(request: CardRequest):
             return "top"
 
         # Process Text Fields
-        # We will iterate through these and collect meshes to carve in one go
-        # to prevent mesh degradation from repeated OpenSCAD boolean operations.
-
         fields_to_process = [
             ("name", request.content.name, request.positions.name),
             ("jobTitle", request.content.jobTitle, request.positions.jobTitle),
@@ -111,27 +103,28 @@ async def generate_card(request: CardRequest):
             ("phone", request.content.phoneNumber, request.positions.phone),
         ]
 
-        TEXT_HEIGHT = 4.0
-
         text_meshes_for_scene = []
 
         for field_name, text_value, position in fields_to_process:
             if not text_value:
                 continue
+                
+            # Set text height based on field
+            current_text_height = 5.0 if field_name == "name" else 4.0
 
             # Create the text mesh
             box_mesh = carver.carve_text(
                 position.x,
                 position.y,
                 text=text_value,
-                text_height=TEXT_HEIGHT
+                text_height=current_text_height
                 )
             
             txt_mesh = carver.fill_in_text(
                 position.x,
                 position.y,
                 text=text_value,
-                text_height=TEXT_HEIGHT,
+                text_height=current_text_height,
             )
 
             text_meshes_for_scene.append(txt_mesh)

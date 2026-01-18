@@ -17,8 +17,10 @@ class Carver:
         qr_module_size=1.0,
         qr_border=4,
         qr_error_correction=None,
+        font_path=None,
     ):
         self.font = font
+        self.font_path = font_path
         self.depth = depth
         self.box_extents = box_extents
         self.mesh = None
@@ -174,10 +176,15 @@ class Carver:
             text_x = x
             text_y = y
             text_z = top_z - self.depth
+            
+            use_statement = ""
+            if self.font_path:
+                use_statement = f'use <{Path(self.font_path).resolve().as_posix()}>'
 
             scad_path.write_text(
                 "\n".join(
                     [
+                        use_statement,
                         "translate(["
                         f"{text_x}, {text_y}, {text_z}"
                         "])",

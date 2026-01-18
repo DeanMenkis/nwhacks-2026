@@ -25,8 +25,6 @@ payload = {
     "email": "peepeepoo@gmail",
     "jobTitle": "Peepee poo poo in india wooohoo",
     "phoneNumber": "",
-    "github": None,
-    "linkedin": "linkedin.com/deanmenkis",
     "qrUrl": "https://example.com/"
   },
   "positions": {
@@ -45,14 +43,6 @@ payload = {
     "email": {
       "x": -36.5,
       "y": -17
-    },
-    "github": {
-      "x": -36.5,
-      "y": -13
-    },
-    "linkedin": {
-      "x": -36.5,
-      "y": -9
     },
     "qrCode": {
       "x": 0,
