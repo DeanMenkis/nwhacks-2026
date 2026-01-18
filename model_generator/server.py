@@ -11,7 +11,17 @@ from pathlib import Path
 from Carver import Carver
 import io  # For BytesIO
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 # Default constants
 # To change the font, set the CARD_FONT environment variable or change this default.
