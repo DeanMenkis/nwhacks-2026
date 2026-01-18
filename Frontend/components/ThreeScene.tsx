@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
+import QRCode from 'qrcode';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Grid, Text as DreiText } from '@react-three/drei';
 import * as THREE from 'three';
@@ -13,8 +14,48 @@ const CARD_THICKNESS = 1.6; // 1.6mm thickness (standard PCB/Credit card)
 const EDGE_PADDING = 6;
 const TEXT_COLOR = '#FFFFFF';
 
+const QRCodePlane = ({ link, size = 25 }: { link: string; size?: number }) => {
+  const [textureUrl, setTextureUrl] = useState<string>('');
+  const [texture, setTexture] = useState<THREE.Texture | null>(null);
+
+  useEffect(() => {
+    if (link) {
+      QRCode.toDataURL(link, {
+        width: 512,
+        margin: 1,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF',
+        },
+      })
+        .then(setTextureUrl)
+        .catch(console.error);
+    }
+  }, [link]);
+
+  useEffect(() => {
+    if (!textureUrl) return;
+    const loader = new THREE.TextureLoader();
+    const tex = loader.load(textureUrl);
+    setTexture(tex);
+
+    return () => {
+      tex.dispose();
+    };
+  }, [textureUrl]);
+
+  if (!texture) return null;
+
+  return (
+    <mesh rotation={[0, Math.PI, 0]} scale={[-1, 1, 1]}>
+      <planeGeometry args={[size, size]} />
+      <meshBasicMaterial map={texture} transparent />
+    </mesh>
+  );
+};
+
 const Card = () => {
-  const { color, name, email, jobTitle, phoneNumber, filletRadius } = useCardStore();
+  const { color, name, email, jobTitle, phoneNumber, filletRadius, showQrCode, qrCodeLink } = useCardStore();
 
   const shape = useMemo(() => {
     const s = new THREE.Shape();
@@ -116,6 +157,13 @@ const Card = () => {
             {email || 'email@example.com'}
           </DreiText>
         </group>
+      </group>
+
+      {/* Back of Card Content - QR Code */}
+      <group position={[0, 0, -0.05]}>
+        {showQrCode && qrCodeLink && (
+          <QRCodePlane link={qrCodeLink} size={30} />
+        )}
       </group>
     </mesh>
   );
