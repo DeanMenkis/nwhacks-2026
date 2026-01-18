@@ -36,7 +36,7 @@ export const Sidebar: React.FC = () => {
           <div className="size-8 bg-primary rounded-lg flex items-center justify-center shadow-glow">
             <span className="material-symbols-outlined text-xl">view_in_ar</span>
           </div>
-          <h1 className="text-xl font-extrabold tracking-tight">LinkedOut</h1>
+          <h1 className="text-xl font-extrabold tracking-tight">PrintMyCard</h1>
         </div>
         <p className="text-white/40 text-sm font-medium pl-11">Dashboard v0.1</p>
       </div>
@@ -224,7 +224,7 @@ export const Sidebar: React.FC = () => {
 
       {/* Sidebar Footer */}
       <div className="p-6 mt-auto border-t border-white/5 bg-surface-dark/50 backdrop-blur-sm text-center">
-        <p className="text-xs text-white/20">© 2026 LinkedOut</p>
+        <p className="text-xs text-white/20">© 2026 PrintMyCard</p>
       </div>
     </aside>
   );

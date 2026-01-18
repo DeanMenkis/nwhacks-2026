@@ -20,7 +20,7 @@ const LandingPage: React.FC = () => {
                         <div className="size-10 bg-primary rounded-xl flex items-center justify-center shadow-glow">
                             <Box className="text-white w-6 h-6" />
                         </div>
-                        <h1 className="text-xl font-extrabold tracking-tight">LinkedOut</h1>
+                        <h1 className="text-xl font-extrabold tracking-tight">PrintMyCard</h1>
                     </div>
                     <div className="flex items-center gap-4">
                     </div>
@@ -173,12 +173,12 @@ const LandingPage: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
                         <Box className="w-5 h-5" />
-                        <span className="font-bold">LinkedOut</span>
+                        <span className="font-bold">PrintMyCard</span>
                     </div>
                     <div className="flex gap-8 text-sm text-white/40">
                         {/* Footer links removed as requested */}
                     </div>
-                    <div className="text-sm text-white/20">© 2026 LinkedOut Inc.</div>
+                    <div className="text-sm text-white/20">© 2026 PrintMyCard Inc.</div>
                 </div>
             </footer>
         </div>
