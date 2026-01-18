@@ -130,21 +130,29 @@ async def generate_card(request: CardRequest):
             # Set text height based on field
             current_text_height = 5.0 if field_name == "name" else 4.0
 
-            # Generate the text mesh (positive volume)
-            txt_mesh = carver.fill_in_text(
+            # Generate the text mesh (positive volume) - Standard depth for subtraction
+            txt_mesh_subtraction = carver.fill_in_text(
                 position.x,
                 position.y,
                 text=text_value,
                 text_height=current_text_height,
             )
 
-            # For carving text, we typically just subtract this same mesh (or a slightly deeper one if desired, 
-            # but Carver.carve_text logic used the same fill_in_text mesh for subtraction).
-            # So we add it to the subtraction list.
-            meshes_to_subtract.append(txt_mesh)
+            # Generate the text mesh (raised volume) - For display/export
+            # Raised 0.4mm above surface (default extra_height=0.4 in the method)
+            txt_mesh_raised = carver.generate_raised_text_mesh(
+                position.x,
+                position.y,
+                text=text_value,
+                text_height=current_text_height,
+                extra_height=0.4  # Explicitly requesting 0.4mm raised
+            )
+
+            # For carving text, we subtract the standard depth mesh 
+            meshes_to_subtract.append(txt_mesh_subtraction)
             
-            # Also keep it for the scene
-            text_meshes_for_scene.append(txt_mesh)
+            # For the scene, we add the raised mesh
+            text_meshes_for_scene.append(txt_mesh_raised)
 
         # Process QR Code
         qr_pos = request.positions.qrCode

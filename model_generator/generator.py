@@ -31,40 +31,53 @@ carver = Carver(
 box_mesh = carver.generate_rounded_base(3.0)
 
 try:
-    box_mesh = carver.carve_text(
+    # Text 1
+    # Standard mesh for subtraction
+    text_mesh_1_sub = carver.fill_in_text(
         -30,
         20,
         text=TEXT_CONTENT,
         text_height=TEXT_HEIGHT,
     )
-
-    text_mesh_1 = carver.fill_in_text(
+    # Raised mesh for scene
+    text_mesh_1_raised = carver.generate_raised_text_mesh(
         -30,
         20,
         text=TEXT_CONTENT,
         text_height=TEXT_HEIGHT,
+        extra_height=0.4
     )
 
-    box_mesh = carver.carve_text(
+    # Text 2
+    # Standard mesh for subtraction
+    text_mesh_2_sub = carver.fill_in_text(
         -30,
         -10,
         text="PIZDA",
         text_height=TEXT_HEIGHT,
+    )
+    # Raised mesh for scene
+    text_mesh_2_raised = carver.generate_raised_text_mesh(
+        -30,
+        -10,
+        text="PIZDA",
+        text_height=TEXT_HEIGHT,
+        extra_height=0.4
     )
     
-    text_mesh_2 = carver.fill_in_text(
-        -30,
-        -10,
-        text="PIZDA",
-        text_height=TEXT_HEIGHT,
-    )
+    # Subtract text meshes
+    box_mesh = carver.apply_difference([text_mesh_1_sub, text_mesh_2_sub])
 
-    box_mesh = carver.carve_qr(
+    # QR Code
+    qr_cutout = carver.generate_qr_cutout_mesh(
         0,
         0,
         url=QR_URL,
-        side = "bottom"
+        side="bottom"
     )
+    # Subtract qr cutout (make sure to include it in difference if not already done, or do another difference)
+    # Since apply_difference acts on self.mesh, we can call it again
+    box_mesh = carver.apply_difference([qr_cutout])
 
     qr_mesh = carver.fill_in_qr(
         0,
@@ -76,8 +89,8 @@ try:
     scene = trimesh.Scene()
 
     scene.add_geometry(box_mesh, node_name="box")
-    # scene.add_geometry(text_mesh_1, node_name="text")
-    # scene.add_geometry(text_mesh_2, node_name="text2")
+    scene.add_geometry(text_mesh_1_raised, node_name="text")
+    scene.add_geometry(text_mesh_2_raised, node_name="text2")
     scene.add_geometry(qr_mesh, node_name="qr")
 
 

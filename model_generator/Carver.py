@@ -109,6 +109,9 @@ class Carver:
             if self.font_path:
                 use_statement = f'use <{Path(self.font_path).resolve().as_posix()}>'
 
+            # Add epsilon to height for clean subtraction
+            epsilon = 0.1
+            
             scad_path.write_text(
                 "\n".join(
                     [
@@ -117,7 +120,7 @@ class Carver:
                         f"{text_x}, {text_y}, {text_z}"
                         "])",
                         "  linear_extrude(height="
-                        f"{self.depth}"
+                        f"{self.depth + epsilon}"
                         ")",
                         "    text("
                         f"\"{text}\", size={text_height}, font=\"{self.font}\", halign=\"left\", valign=\"center\""
@@ -209,12 +212,13 @@ class Carver:
 
             scad_lines = ["union() {"]
             depth = self.qr_generator.depth
+            epsilon = 0.1
             for x_min, y_min, z_min, size in module_boxes:
                 scad_lines.append(
                     "    translate(["
                     f"{x_min}, {y_min}, {z_min}"
                     "]) cube(["
-                    f"{size}, {size}, {depth}"
+                    f"{size}, {size}, {depth + epsilon}"
                     "]);"
                 )
             scad_lines.append("}")
@@ -268,3 +272,56 @@ class Carver:
 
             self.mesh = trimesh.load(result_path, force="mesh")
             return self.mesh
+
+    def generate_raised_text_mesh(
+        self,
+        x,
+        y,
+        text,
+        text_height,
+        extra_height=0.4,
+    ):
+        """Generates a text mesh that is deeper/taller than the carve depth, so it protrudes."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            result_path = tmp_path / "text_raised.stl"
+            scad_path = tmp_path / "text_raised.scad"
+
+            top_z = self.box_extents[2] / 2.0
+            
+            text_x = x
+            text_y = y
+            # Start at the same Z level as the carved hole bottom
+            text_z = top_z - self.depth
+            
+            # Total height = depth of hole + extra raise amount
+            total_height = self.depth + extra_height
+            
+            use_statement = ""
+            if self.font_path:
+                use_statement = f'use <{Path(self.font_path).resolve().as_posix()}>'
+
+            scad_path.write_text(
+                "\n".join(
+                    [
+                        use_statement,
+                        "translate(["
+                        f"{text_x}, {text_y}, {text_z}"
+                        "])",
+                        "  linear_extrude(height="
+                        f"{total_height}"
+                        ")",
+                        "    text("
+                        f"\"{text}\", size={text_height}, font=\"{self.font}\", halign=\"left\", valign=\"center\""
+                        ");",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                ["openscad", "-o", str(result_path), str(scad_path)],
+                check=True,
+            )
+
+            return trimesh.load(result_path, force="mesh")
