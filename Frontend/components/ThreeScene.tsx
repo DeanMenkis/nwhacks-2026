@@ -54,7 +54,11 @@ const QRCodePlane = ({ link, size = 25 }: { link: string; size?: number }) => {
 };
 
 const Card = () => {
-  const { color, name, email, jobTitle, phoneNumber, github, linkedin, filletRadius, showQrCode, showGithub, showLinkedin, qrCodeLink, fontColor, font } = useCardStore();
+  const { color, name, email, jobTitle, phoneNumber, github, linkedin, filletRadius, showQrCode, showGithub, showLinkedin, qrCodeLink, fontColor, font, fontBold } = useCardStore();
+
+  const activeFont = fontBold
+    ? '/fonts/Monocraft-ttf/weights/Monocraft-Bold.ttf'
+    : font;
 
   const shape = useMemo(() => {
     // ... shape calculation remains same ...
@@ -107,15 +111,14 @@ const Card = () => {
       />
 
       {/* Content Group - On top of the extruded surface (z = THICKNESS) */}
-      <group position={[0, 0, CARD_THICKNESS + 0.05]} key={font}>
+      <group position={[0, 0, CARD_THICKNESS + 0.05]} key={activeFont}>
 
         {/* Name - Top Left */}
         <DreiText
           position={[-CARD_WIDTH / 2 + EDGE_PADDING, CARD_HEIGHT / 2 - EDGE_PADDING, 0]}
           fontSize={5}
           color={fontColor}
-          font={font}
-          fontWeight="bold"
+          font={activeFont}
           anchorX="left"
           anchorY="top"
           maxWidth={CARD_WIDTH - (EDGE_PADDING * 2)}
@@ -128,8 +131,7 @@ const Card = () => {
           position={[-CARD_WIDTH / 2 + EDGE_PADDING, CARD_HEIGHT / 2 - EDGE_PADDING - 8, 0]}
           fontSize={4}
           color={fontColor}
-          font={font}
-          fontWeight="bold"
+          font={activeFont}
           anchorX="left"
           anchorY="top"
           maxWidth={CARD_WIDTH - (EDGE_PADDING * 2)}
@@ -144,8 +146,7 @@ const Card = () => {
             position={[0, 0, 0]} // Phone at bottom
             fontSize={4}
             color={fontColor}
-            font={font}
-            fontWeight="bold"
+            font={activeFont}
             anchorX="left"
             anchorY="bottom"
           >
@@ -155,8 +156,7 @@ const Card = () => {
             position={[0, 6, 0]} // Email
             fontSize={4}
             color={fontColor}
-            font={font}
-            fontWeight="bold"
+            font={activeFont}
             anchorX="left"
             anchorY="bottom"
           >
@@ -167,8 +167,7 @@ const Card = () => {
               position={[0, 12, 0]} // Github
               fontSize={4}
               color={fontColor}
-              font={font}
-              fontWeight="bold"
+              font={activeFont}
               anchorX="left"
               anchorY="bottom"
             >
@@ -180,8 +179,7 @@ const Card = () => {
               position={[0, 18, 0]} // Linkedin
               fontSize={4}
               color={fontColor}
-              font={font}
-              fontWeight="bold"
+              font={activeFont}
               anchorX="left"
               anchorY="bottom"
             >

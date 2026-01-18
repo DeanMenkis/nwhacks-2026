@@ -89,7 +89,7 @@ export const Sidebar: React.FC = () => {
 
         {/* Github Toggle */}
         <div className="space-y-4">
-          <label className="flex items-center gap-3 cursor-pointer group">
+          <label className="flex items-center gap-3 cursor-pointer group px-4">
             <div className="relative flex items-center">
               <input
                 type="checkbox"
@@ -118,7 +118,7 @@ export const Sidebar: React.FC = () => {
 
         {/* Linkedin Toggle */}
         <div className="space-y-4">
-          <label className="flex items-center gap-3 cursor-pointer group">
+          <label className="flex items-center gap-3 cursor-pointer group px-4">
             <div className="relative flex items-center">
               <input
                 type="checkbox"
@@ -147,7 +147,7 @@ export const Sidebar: React.FC = () => {
 
         {/* QR Code Toggle */}
         <div className="space-y-4">
-          <label className="flex items-center gap-3 cursor-pointer group">
+          <label className="flex items-center gap-3 cursor-pointer group px-4">
             <div className="relative flex items-center">
               <input
                 type="checkbox"
