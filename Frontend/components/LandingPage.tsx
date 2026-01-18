@@ -29,7 +29,7 @@ const LandingPage: React.FC = () => {
             </nav>
 
             {/* Hero Header */}
-            <header className="relative pt-8 pb-20 lg:pt-12 lg:pb-32 overflow-hidden">
+            <header className="relative pt-24 pb-20 lg:pt-32 lg:pb-32 overflow-hidden">
                 {/* Background Gradients */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
                     <div className="absolute top-[-10%] left-[10%] w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] animate-pulse"></div>

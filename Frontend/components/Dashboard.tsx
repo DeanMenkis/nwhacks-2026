@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCardStore } from '../store';
 import { Sidebar } from './Sidebar';
 import { ThreeScene } from './ThreeScene';
 import { ActionPanel } from './ActionPanel';
 
 export const Dashboard: React.FC = () => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   const {
     name,
     email,
@@ -72,10 +73,34 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className="flex h-screen w-full bg-background-dark overflow-hidden">
-      <Sidebar />
+
+      {/* Mobile Overlay */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden backdrop-blur-sm"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar Container */}
+      <div className={`
+        fixed inset-y-0 left-0 z-50 transform transition-transform duration-300 ease-in-out
+        md:relative md:translate-x-0
+        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
+        <Sidebar />
+      </div>
 
       {/* Main Viewport */}
       <main className="flex-1 relative flex flex-col bg-background-dark overflow-hidden">
+
+        {/* Mobile Toggle Button */}
+        <button
+          className="absolute top-4 left-4 z-40 p-2 bg-surface-dark/90 backdrop-blur-md border border-white/10 rounded-xl text-white md:hidden hover:bg-surface-dark transition-colors shadow-lg"
+          onClick={() => setSidebarOpen(true)}
+        >
+          <span className="material-symbols-outlined">menu</span>
+        </button>
 
         {/* 3D Canvas Area */}
         <div className="flex-1 relative flex items-center justify-center w-full h-full overflow-hidden perspective-container">
@@ -83,7 +108,7 @@ export const Dashboard: React.FC = () => {
           <ThreeScene />
 
           {/* Preview Label Overlay */}
-          <div className="absolute top-8 left-8 bg-surface-dark/50 backdrop-blur-md px-4 py-2 rounded-full border border-white/5 flex items-center gap-2 pointer-events-none select-none z-10">
+          <div className="absolute top-8 right-8 md:left-8 md:right-auto bg-surface-dark/50 backdrop-blur-md px-4 py-2 rounded-full border border-white/5 flex items-center gap-2 pointer-events-none select-none z-10">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-teal opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-teal" />

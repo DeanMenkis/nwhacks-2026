@@ -19,7 +19,7 @@ export const Sidebar: React.FC = () => {
   } = useCardStore();
 
   return (
-    <aside className="w-[360px] h-full bg-surface-dark border-r border-white/5 flex flex-col z-20 shadow-2xl overflow-y-auto shrink-0 relative">
+    <aside className="w-[85vw] md:w-[360px] h-full bg-surface-dark border-r border-white/5 flex flex-col z-20 shadow-2xl overflow-y-auto shrink-0 relative">
       <div className="pt-6 px-8">
         <Link
           to="/"

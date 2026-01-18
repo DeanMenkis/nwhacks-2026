@@ -17,7 +17,7 @@ const DEMO_STATES = [
         color: "#2DD4BF", // Teal
     },
     {
-        name: "Ilia Morozov",
+        name: "Ilia Moroz",
         jobTitle: "Firmware/Hardware Engineer",
         school: "@ BCIT",
         email: "iliamorozim@gmail.com",
@@ -33,7 +33,7 @@ const DEMO_STATES = [
         email: "nlu26@my.bcit.ca",
         phoneNumber: "(778)) 892-2083",
         github: "",
-        linkedin: "inkedin.com/in/ninaplaystime/",
+        linkedin: "linkedin.com/in/ninaplaystime/",
         color: "#60A5FA", // Blue
     }
 ];
