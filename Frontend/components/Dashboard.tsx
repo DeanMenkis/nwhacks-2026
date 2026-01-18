@@ -1,9 +1,73 @@
 import React from 'react';
+import { useCardStore } from '../store';
 import { Sidebar } from './Sidebar';
 import { ThreeScene } from './ThreeScene';
 import { ActionPanel } from './ActionPanel';
 
 export const Dashboard: React.FC = () => {
+  const {
+    name,
+    email,
+    jobTitle,
+    phoneNumber,
+    github,
+    linkedin,
+    showQrCode,
+    showGithub,
+    showLinkedin,
+    qrCodeLink,
+    color,
+    fontColor,
+    filletRadius,
+  } = useCardStore();
+
+  const handleGenerateJson = () => {
+    const CARD_WIDTH = 85;
+    const CARD_HEIGHT = 54;
+    const CARD_THICKNESS = 1.6;
+    const EDGE_PADDING = 6;
+
+    const xLeft = -CARD_WIDTH / 2 + EDGE_PADDING;
+    const yTop = CARD_HEIGHT / 2 - EDGE_PADDING;
+
+    const positions = {
+      name: { x: xLeft, y: yTop },
+      jobTitle: { x: xLeft, y: yTop - 7 },
+      phone: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING },
+      email: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 4 },
+      github: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 8 },
+      linkedin: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 12 },
+      qrCode: { x: 0, y: 0, face: 'back' }
+    };
+
+    const payload = {
+      metadata: {
+        version: "1.0",
+        timestamp: new Date().toISOString(),
+        appName: "PrintMyCard"
+      },
+      design: {
+        color,
+        fontColor,
+        filletRadius,
+        thickness: CARD_THICKNESS,
+        dimensions: { width: CARD_WIDTH, height: CARD_HEIGHT }
+      },
+      content: {
+        name,
+        email,
+        jobTitle,
+        phoneNumber,
+        github: showGithub ? github : null,
+        linkedin: showLinkedin ? linkedin : null,
+        qrUrl: showQrCode && qrCodeLink ? qrCodeLink : "https://example.com"
+      },
+      positions
+    };
+
+    console.log(JSON.stringify(payload, null, 2));
+  };
+
   return (
     <div className="flex h-screen w-full bg-background-dark overflow-hidden">
       <Sidebar />
@@ -26,7 +90,7 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        <ActionPanel />
+        <ActionPanel onGenerate={handleGenerateJson} />
 
       </main>
     </div>
