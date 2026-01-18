@@ -73,9 +73,8 @@ export const Dashboard: React.FC = () => {
     setIsGenerating(true);
 
     try {
-      // Use VITE_API_URL from environment variables (set in Vercel)
-      // Note: User confirmed /generate is manually appended to the env var or should be treated as such.
-      const apiUrl = import.meta.env.VITE_API_URL;
+      // Use VITE_API_URL from environment variables
+      let apiUrl = import.meta.env.VITE_API_URL;
 
       if (!apiUrl) {
         console.error("VITE_API_URL is not defined");
@@ -83,17 +82,35 @@ export const Dashboard: React.FC = () => {
         return;
       }
 
+      // Robustly construct the URL: ensure it ends with /generate
+      // This handles both cases: whether the env var has it or not.
+      if (!apiUrl.endsWith('/generate')) {
+        // distinct handling if apiUrl ends in / to avoid double slashes
+        apiUrl = apiUrl.endsWith('/') ? `${apiUrl}generate` : `${apiUrl}/generate`;
+      }
+
+      console.log(`Attempting 3MF generation at: ${apiUrl}`);
+      console.log('Payload:', payload);
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "69420" // This bypasses the warning page
+          "ngrok-skip-browser-warning": "69420"
         },
         body: JSON.stringify(payload)
       });
 
       if (!response.ok) {
-        throw new Error(`Generation failed: ${response.statusText}`);
+        console.error('Server Response Status:', response.status);
+        console.error('Server Response Text:', response.statusText);
+        // Try to get error details from body if JSON
+        try {
+          const errorBody = await response.text();
+          console.error('Error Body:', errorBody);
+        } catch (e) { /* ignore */ }
+
+        throw new Error(`Server returned status ${response.status}: ${response.statusText}`);
       }
 
       const blob = await response.blob();
@@ -108,7 +125,8 @@ export const Dashboard: React.FC = () => {
 
     } catch (error) {
       console.error("3MF Generation Error:", error);
-      alert("Failed to generate 3MF file. Please try again or check the console for details.");
+      // More informative user alert
+      alert(`Generation Failed.\n\nDetails: ${error instanceof Error ? error.message : 'Unknown error'}\n\nCheck console for full logs.`);
     } finally {
       setIsGenerating(false);
     }
