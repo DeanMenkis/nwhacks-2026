@@ -55,13 +55,14 @@ const QRCodePlane = ({ link, size = 25 }: { link: string; size?: number }) => {
 };
 
 const Card = () => {
-  const { color, name, email, jobTitle, phoneNumber, github, linkedin, filletRadius, showQrCode, showGithub, showLinkedin, qrCodeLink, fontColor } = useCardStore();
+  const { color, name, email, jobTitle, phoneNumber, github, linkedin, filletRadius, showQrCode, showGithub, showLinkedin, qrCodeLink, fontColor, font } = useCardStore();
 
   const shape = useMemo(() => {
+    // ... shape calculation remains same ...
     const s = new THREE.Shape();
     const w = CARD_WIDTH;
     const h = CARD_HEIGHT;
-    const r = Math.min(Math.max(0, filletRadius), Math.min(w, h) / 2); // Clamp radius safe
+    const r = Math.min(Math.max(0, filletRadius), Math.min(w, h) / 2);
 
     const x = -w / 2;
     const y = -h / 2;
@@ -91,7 +92,7 @@ const Card = () => {
     depth: CARD_THICKNESS,
     bevelEnabled: false,
     steps: 1,
-    curveSegments: 32 // Smooth corners
+    curveSegments: 32
   }), []);
 
   return (
@@ -108,14 +109,13 @@ const Card = () => {
 
       {/* Content Group - On top of the extruded surface (z = THICKNESS) */}
       <group position={[0, 0, CARD_THICKNESS + 0.05]}>
-        {/* Helper Group to fix text orientation relative to the XY shape plane */}
-        {/* Text defaults to XY plane. Our shape is XY. So text aligns naturally. */}
 
         {/* Name - Top Left */}
         <DreiText
           position={[-CARD_WIDTH / 2 + EDGE_PADDING, CARD_HEIGHT / 2 - EDGE_PADDING, 0]}
           fontSize={5}
           color={fontColor}
+          font={font}
           anchorX="left"
           anchorY="top"
           maxWidth={CARD_WIDTH - (EDGE_PADDING * 2)}
@@ -128,6 +128,7 @@ const Card = () => {
           position={[-CARD_WIDTH / 2 + EDGE_PADDING, CARD_HEIGHT / 2 - EDGE_PADDING - 8, 0]}
           fontSize={4}
           color={fontColor}
+          font={font}
           anchorX="left"
           anchorY="top"
           maxWidth={CARD_WIDTH - (EDGE_PADDING * 2)}
@@ -142,6 +143,7 @@ const Card = () => {
             position={[0, 0, 0]} // Phone at bottom
             fontSize={4}
             color={fontColor}
+            font={font}
             anchorX="left"
             anchorY="bottom"
           >
@@ -151,6 +153,7 @@ const Card = () => {
             position={[0, 6, 0]} // Email
             fontSize={4}
             color={fontColor}
+            font={font}
             anchorX="left"
             anchorY="bottom"
           >
@@ -161,6 +164,7 @@ const Card = () => {
               position={[0, 12, 0]} // Github
               fontSize={4}
               color={fontColor}
+              font={font}
               anchorX="left"
               anchorY="bottom"
             >
@@ -172,6 +176,7 @@ const Card = () => {
               position={[0, 18, 0]} // Linkedin
               fontSize={4}
               color={fontColor}
+              font={font}
               anchorX="left"
               anchorY="bottom"
             >

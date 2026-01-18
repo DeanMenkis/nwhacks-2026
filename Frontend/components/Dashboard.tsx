@@ -18,6 +18,7 @@ export const Dashboard: React.FC = () => {
     qrCodeLink,
     color,
     fontColor,
+    font,
     filletRadius,
   } = useCardStore();
 
@@ -48,6 +49,7 @@ export const Dashboard: React.FC = () => {
       },
       design: {
         color,
+        font,
         fontColor,
         filletRadius,
         thickness: CARD_THICKNESS,
