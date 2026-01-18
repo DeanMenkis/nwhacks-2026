@@ -94,15 +94,7 @@ export const Sidebar: React.FC = () => {
           </div>
         </div>
 
-        {/* Quality Settings */}
-        <div className="px-4 pt-4">
-          <h3 className="text-white text-lg font-bold leading-tight mb-4">Print Quality</h3>
-          <div className="flex bg-input-bg p-1 rounded-xl border border-input-border">
-            <button className="flex-1 py-2 rounded-lg text-xs font-bold text-white bg-primary shadow-sm transition-all">0.1mm</button>
-            <button className="flex-1 py-2 rounded-lg text-xs font-bold text-white/50 hover:text-white hover:bg-white/5 transition-all">0.2mm</button>
-            <button className="flex-1 py-2 rounded-lg text-xs font-bold text-white/50 hover:text-white hover:bg-white/5 transition-all">0.3mm</button>
-          </div>
-        </div>
+
       </div>
 
       {/* Sidebar Footer */}

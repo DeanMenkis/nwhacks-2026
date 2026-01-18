@@ -1,22 +1,19 @@
 import React from 'react';
 import { Sidebar } from './Sidebar';
 import { ThreeScene } from './ThreeScene';
-import { ViewportControls } from './ViewportControls';
 import { ActionPanel } from './ActionPanel';
 
 export const Dashboard: React.FC = () => {
   return (
     <div className="flex h-screen w-full bg-background-dark overflow-hidden">
       <Sidebar />
-      
+
       {/* Main Viewport */}
       <main className="flex-1 relative flex flex-col bg-background-dark overflow-hidden">
-        
-        <ViewportControls />
 
         {/* 3D Canvas Area */}
         <div className="flex-1 relative flex items-center justify-center w-full h-full overflow-hidden perspective-container">
-          
+
           <ThreeScene />
 
           {/* Preview Label Overlay */}

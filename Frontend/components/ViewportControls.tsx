@@ -14,8 +14,8 @@ export const ViewportControls: React.FC = () => {
 };
 
 const ControlButton: React.FC<{ icon: string; label: string }> = ({ icon, label }) => (
-  <button 
-    aria-label={label} 
+  <button
+    aria-label={label}
     className="size-10 flex items-center justify-center rounded-xl bg-white/5 hover:bg-primary/20 text-white/70 hover:text-primary transition-all hover:scale-105"
   >
     <span className="material-symbols-outlined">{icon}</span>
