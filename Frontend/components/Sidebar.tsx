@@ -14,8 +14,8 @@ const COLORS: FilamentColor[] = [
 
 export const Sidebar: React.FC = () => {
   const {
-    name, email, jobTitle, phoneNumber, github, linkedin, showQrCode, qrCodeLink, color, filletRadius,
-    setName, setEmail, setJobTitle, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setQrCodeLink, setColor, setFilletRadius
+    name, email, jobTitle, phoneNumber, github, linkedin, showQrCode, qrCodeLink, color, fontColor, filletRadius,
+    setName, setEmail, setJobTitle, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setQrCodeLink, setColor, setFontColor, setFilletRadius
   } = useCardStore();
 
   return (
@@ -181,6 +181,36 @@ export const Sidebar: React.FC = () => {
                   {isActive && (
                     <span className={`material-symbols-outlined text-sm font-bold ${c.hex === '#FFFFFF' ? 'text-black' : 'text-white'}`}>
                       check
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="w-full h-px bg-white/5 my-2 mx-4 !w-auto" />
+
+        {/* Font Colors */}
+        <div className="px-4">
+          <h3 className="text-white text-lg font-bold leading-tight mb-4">Font Colors</h3>
+          <div className="grid grid-cols-5 gap-3">
+            {COLORS.map((c) => {
+              const isActive = fontColor === c.hex;
+              return (
+                <button
+                  key={`font-${c.hex}`}
+                  onClick={() => setFontColor(c.hex)}
+                  className={`
+                    aspect-square rounded-full flex items-center justify-center transition-all cursor-pointer 
+                    ${isActive ? 'ring-2 ring-offset-2 ring-offset-[#2A2534] shadow-glow scale-110' : 'opacity-80 hover:opacity-100 hover:scale-110'}
+                  `}
+                  style={{ backgroundColor: c.hex, borderColor: isActive ? c.hex : 'transparent' }}
+                  aria-label={`Select ${c.name} font color`}
+                >
+                  {isActive && (
+                    <span className={`material-symbols-outlined text-sm font-bold ${c.hex === '#FFFFFF' ? 'text-black' : 'text-white'}`}>
+                      format_color_text
                     </span>
                   )}
                 </button>

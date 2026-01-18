@@ -12,7 +12,7 @@ const CARD_THICKNESS = 1.6; // 1.6mm thickness (standard PCB/Credit card)
 
 // Layout Constants
 const EDGE_PADDING = 6;
-const TEXT_COLOR = '#FFFFFF';
+// const TEXT_COLOR = '#FFFFFF'; // Removed in favor of store state
 
 const QRCodePlane = ({ link, size = 25 }: { link: string; size?: number }) => {
   const [textureUrl, setTextureUrl] = useState<string>('');
@@ -55,7 +55,7 @@ const QRCodePlane = ({ link, size = 25 }: { link: string; size?: number }) => {
 };
 
 const Card = () => {
-  const { color, name, email, jobTitle, phoneNumber, filletRadius, showQrCode, qrCodeLink } = useCardStore();
+  const { color, name, email, jobTitle, phoneNumber, filletRadius, showQrCode, qrCodeLink, fontColor } = useCardStore();
 
   const shape = useMemo(() => {
     const s = new THREE.Shape();
@@ -115,7 +115,7 @@ const Card = () => {
         <DreiText
           position={[-CARD_WIDTH / 2 + EDGE_PADDING, CARD_HEIGHT / 2 - EDGE_PADDING, 0]}
           fontSize={5}
-          color={TEXT_COLOR}
+          color={fontColor}
           anchorX="left"
           anchorY="top"
           maxWidth={CARD_WIDTH - (EDGE_PADDING * 2)}
@@ -127,7 +127,7 @@ const Card = () => {
         <DreiText
           position={[-CARD_WIDTH / 2 + EDGE_PADDING, CARD_HEIGHT / 2 - EDGE_PADDING - 7, 0]}
           fontSize={3}
-          color={TEXT_COLOR}
+          color={fontColor}
           anchorX="left"
           anchorY="top"
           maxWidth={CARD_WIDTH - (EDGE_PADDING * 2)}
@@ -141,7 +141,7 @@ const Card = () => {
           <DreiText
             position={[0, 0, 0]} // Phone at bottom
             fontSize={2.5}
-            color={TEXT_COLOR}
+            color={fontColor}
             anchorX="left"
             anchorY="bottom"
           >
@@ -150,7 +150,7 @@ const Card = () => {
           <DreiText
             position={[0, 4, 0]} // Email slightly above
             fontSize={2.5}
-            color={TEXT_COLOR}
+            color={fontColor}
             anchorX="left"
             anchorY="bottom"
           >
@@ -181,9 +181,9 @@ export const ThreeScene: React.FC = () => {
           target={[0, 0, 0]}
         />
 
-        <ambientLight intensity={0.5} />
-        <pointLight position={[200, 200, 200]} intensity={1} />
-        <pointLight position={[-200, -200, -100]} intensity={0.5} color="#8FD9D9" />
+        <ambientLight intensity={0.8} />
+        <pointLight position={[200, 200, 200]} intensity={1.5} />
+        <pointLight position={[-200, -200, -100]} intensity={0.8} color="#FFFFFF" />
 
         <Card />
 

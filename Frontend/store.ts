@@ -11,6 +11,7 @@ export const useCardStore = create<CardState>((set) => ({
   showQrCode: false,
   qrCodeLink: '',
   color: '#784e97', // Default primary purple
+  fontColor: '#FFFFFF', // Default white
   filletRadius: 3, // Default 3mm fillet
   setName: (name) => set({ name }),
   setEmail: (email) => set({ email }),
@@ -21,5 +22,6 @@ export const useCardStore = create<CardState>((set) => ({
   setShowQrCode: (showQrCode) => set({ showQrCode }),
   setQrCodeLink: (qrCodeLink) => set({ qrCodeLink }),
   setColor: (color) => set({ color }),
+  setFontColor: (fontColor) => set({ fontColor }),
   setFilletRadius: (filletRadius) => set({ filletRadius }),
 }));

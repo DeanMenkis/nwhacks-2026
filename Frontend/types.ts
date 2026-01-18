@@ -10,6 +10,7 @@ export interface CardState {
   showQrCode: boolean;
   qrCodeLink: string;
   color: string;
+  fontColor: string;
   filletRadius: number;
   setName: (name: string) => void;
   setEmail: (email: string) => void;
@@ -20,6 +21,7 @@ export interface CardState {
   setShowQrCode: (show: boolean) => void;
   setQrCodeLink: (link: string) => void;
   setColor: (color: string) => void;
+  setFontColor: (color: string) => void;
   setFilletRadius: (radius: number) => void;
 }
 
