@@ -14,8 +14,8 @@ const COLORS: FilamentColor[] = [
 
 export const Sidebar: React.FC = () => {
   const {
-    name, email, jobTitle, phoneNumber, github, linkedin, showQrCode, qrCodeLink, color,
-    setName, setEmail, setJobTitle, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setQrCodeLink, setColor
+    name, email, jobTitle, phoneNumber, github, linkedin, showQrCode, qrCodeLink, color, filletRadius,
+    setName, setEmail, setJobTitle, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setQrCodeLink, setColor, setFilletRadius
   } = useCardStore();
 
   return (
@@ -130,6 +130,33 @@ export const Sidebar: React.FC = () => {
               />
             </div>
           )}
+        </div>
+
+        <div className="w-full h-px bg-white/5 my-2 mx-4 !w-auto" />
+
+        {/* Filament Shape */}
+        <div className="px-4">
+          <h3 className="text-white text-lg font-bold leading-tight mb-4">Card Shape</h3>
+          <div className="flex flex-col gap-2 px-4">
+            <div className="flex justify-between items-center text-white/80 text-sm font-semibold pl-1">
+              <label>Corner Radius</label>
+              <span className="text-xs bg-white/10 px-2 py-0.5 rounded text-white/60">{filletRadius}mm</span>
+            </div>
+
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step="0.5"
+              value={filletRadius}
+              onChange={(e) => setFilletRadius(parseFloat(e.target.value))}
+              className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary hover:bg-white/20 transition-colors"
+            />
+            <div className="flex justify-between text-xs text-white/30 px-1 mt-1">
+              <span>Sharp</span>
+              <span>Round</span>
+            </div>
+          </div>
         </div>
 
         <div className="w-full h-px bg-white/5 my-2 mx-4 !w-auto" />

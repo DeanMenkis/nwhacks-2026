@@ -10,6 +10,7 @@ export interface CardState {
   showQrCode: boolean;
   qrCodeLink: string;
   color: string;
+  filletRadius: number;
   setName: (name: string) => void;
   setEmail: (email: string) => void;
   setJobTitle: (jobTitle: string) => void;
@@ -19,6 +20,7 @@ export interface CardState {
   setShowQrCode: (show: boolean) => void;
   setQrCodeLink: (link: string) => void;
   setColor: (color: string) => void;
+  setFilletRadius: (radius: number) => void;
 }
 
 export interface InputFieldProps {
