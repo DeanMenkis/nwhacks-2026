@@ -21,37 +21,42 @@ box_mesh.split()
 
 try:
     box_mesh = carver.carve_text(
-        -30, 
+        -30,
         20,
-        box_extents=BOX_EXTENTS,
         text=TEXT_CONTENT,
         text_height=TEXT_HEIGHT,
     )
-    
+
+    text_mesh_1 = carver.fill_in_text(
+        -30,
+        20,
+        text=TEXT_CONTENT,
+        text_height=TEXT_HEIGHT,
+    )
+
     box_mesh = carver.carve_text(
-        -30, 
+        -30,
         -10,
-        box_extents=BOX_EXTENTS,
+        text="PIZDA",
+        text_height=TEXT_HEIGHT,
+    )
+    
+    text_mesh_2 = carver.fill_in_text(
+        -30,
+        -10,
         text="PIZDA",
         text_height=TEXT_HEIGHT,
     )
 
-    # text_mesh = carver.text_mesh_openscad(
-    #     box_extents=BOX_EXTENTS,
-    #     text=TEXT_CONTENT,
-    #     text_height=TEXT_HEIGHT,
-    #     text_depth=TEXT_DEPTH,
-    #     text_margin=TEXT_MARGIN,
-    #     text_font=TEXT_FONT
-    # )
-
     scene = trimesh.Scene()
 
     scene.add_geometry(box_mesh, node_name="box")
+    scene.add_geometry(text_mesh_1, node_name="text")
+    scene.add_geometry(text_mesh_2, node_name="text2")
 
 
 except FileNotFoundError as exc:
     raise RuntimeError("OpenSCAD not found in PATH.") from exc
-scene.show()
+# scene.show()
 
-# scene.export(OUTPUT_3MF)
+scene.export(OUTPUT_3MF)

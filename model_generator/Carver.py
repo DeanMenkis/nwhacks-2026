@@ -58,47 +58,38 @@ class Carver:
         self,
         x,
         y,
-        box_extents,
         text,
         text_height,
         return_text=False,
     ):
-        self._ensure_base_mesh(box_extents)
-        text_mesh = self.text_mesh_openscad(
-            box_extents=box_extents,
+        self._ensure_base_mesh(self.box_extents)
+        text_mesh = self.fill_in_text(
+            x,
+            y,
             text=text,
-            text_height=text_height,
-            x=x,
-            y=y,
+            text_height=text_height
         )
         self.mesh = self._difference_openscad(self.mesh, text_mesh)
         if return_text:
             return self.mesh, text_mesh
         return self.mesh
 
-    def text_mesh_openscad(
+    def fill_in_text(
         self,
-        box_extents,
+        x,
+        y,
         text,
-        text_height,
-        text_margin=None,
-        x=None,
-        y=None,
+        text_height,        
     ):
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
             result_path = tmp_path / "text.stl"
             scad_path = tmp_path / "text.scad"
 
-            top_z = box_extents[2] / 2.0
-            if x is None:
-                if text_margin is None:
-                    raise ValueError(
-                        "Provide either x or text_margin for text placement")
-                text_x = -box_extents[0] / 2.0 + text_margin
-            else:
-                text_x = x
-            text_y = 0.0 if y is None else y
+            top_z = self.box_extents[2] / 2.0
+            
+            text_x = x
+            text_y = y
             text_z = top_z - self.depth
 
             scad_path.write_text(
