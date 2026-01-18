@@ -1,22 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { CardModel } from './CardModel';
 
+// Predefined states for the dynamic rotation
+// Predefined states for the dynamic rotation
+const DEMO_STATES = [
+    {
+        name: "Sarah Smith",
+        jobTitle: "Software Engineer",
+        school: "MIT",
+        email: "sarah@tech.edu",
+        phoneNumber: "(555) 987-6543",
+        github: "github.com/sarah",
+        linkedin: "linkedin.com/in/sarah",
+        color: "#2DD4BF", // Teal
+    },
+    {
+        name: "Jordan Lee",
+        jobTitle: "Founder",
+        school: "Stanford",
+        email: "jordan@startup.io",
+        phoneNumber: "(555) 456-7890",
+        github: "github.com/jordan",
+        linkedin: "linkedin.com/in/jordan",
+        color: "#F472B6", // Pink
+    },
+    {
+        name: "Mike Ross",
+        jobTitle: "Data Scientist",
+        school: "Berkeley",
+        email: "mike@data.ai",
+        phoneNumber: "(555) 234-5678",
+        github: "github.com/mike",
+        linkedin: "linkedin.com/in/mike",
+        color: "#60A5FA", // Blue
+    }
+];
+
 export const LandingThreeScene: React.FC = () => {
-    const demoCardData = {
-        name: "Alex Chen",
-        jobTitle: "Product Designer",
-        school: "Design University",
-        email: "alex@example.com",
-        phoneNumber: "(555) 123-4567",
-        github: "github.com/alex",
-        linkedin: "linkedin.com/in/alex",
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % DEMO_STATES.length);
+        }, 3000); // Change every 3 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const currentData = DEMO_STATES[currentIndex];
+
+    // Merge current demo state with static defaults
+    const cardData = {
+        ...currentData,
         showQrCode: true,
         showGithub: true,
         showLinkedin: true,
         qrCodeLink: "https://printmycard.com",
-        color: "#784e97", // Primary Project Purple
         fontColor: "#FFFFFF",
         font: "/fonts/Monocraft-ttf/Monocraft.ttf",
         fontBold: true,
@@ -41,7 +82,7 @@ export const LandingThreeScene: React.FC = () => {
                 <pointLight position={[-200, -200, -100]} intensity={1.0} color="#FFFFFF" />
                 <spotLight position={[0, 100, 0]} intensity={0.5} angle={0.5} penumbra={1} />
 
-                <CardModel {...demoCardData} />
+                <CardModel {...cardData} />
             </Canvas>
         </div>
     );
