@@ -125,8 +125,8 @@ const Card = () => {
 
         {/* Job Title - Below Name */}
         <DreiText
-          position={[-CARD_WIDTH / 2 + EDGE_PADDING, CARD_HEIGHT / 2 - EDGE_PADDING - 7, 0]}
-          fontSize={3}
+          position={[-CARD_WIDTH / 2 + EDGE_PADDING, CARD_HEIGHT / 2 - EDGE_PADDING - 8, 0]}
+          fontSize={4}
           color={fontColor}
           anchorX="left"
           anchorY="top"
@@ -140,7 +140,7 @@ const Card = () => {
         <group position={[-CARD_WIDTH / 2 + EDGE_PADDING, -CARD_HEIGHT / 2 + EDGE_PADDING, 0]}>
           <DreiText
             position={[0, 0, 0]} // Phone at bottom
-            fontSize={2.5}
+            fontSize={4}
             color={fontColor}
             anchorX="left"
             anchorY="bottom"
@@ -148,8 +148,8 @@ const Card = () => {
             {phoneNumber || '(123) 456-7890'}
           </DreiText>
           <DreiText
-            position={[0, 4, 0]} // Email
-            fontSize={2.5}
+            position={[0, 6, 0]} // Email
+            fontSize={4}
             color={fontColor}
             anchorX="left"
             anchorY="bottom"
@@ -158,8 +158,8 @@ const Card = () => {
           </DreiText>
           {showGithub && (
             <DreiText
-              position={[0, 8, 0]} // Github
-              fontSize={2.5}
+              position={[0, 12, 0]} // Github
+              fontSize={4}
               color={fontColor}
               anchorX="left"
               anchorY="bottom"
@@ -169,8 +169,8 @@ const Card = () => {
           )}
           {showLinkedin && (
             <DreiText
-              position={[0, 12, 0]} // Linkedin
-              fontSize={2.5}
+              position={[0, 18, 0]} // Linkedin
+              fontSize={4}
               color={fontColor}
               anchorX="left"
               anchorY="bottom"

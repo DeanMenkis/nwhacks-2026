@@ -32,11 +32,11 @@ export const Dashboard: React.FC = () => {
 
     const positions = {
       name: { x: xLeft, y: yTop },
-      jobTitle: { x: xLeft, y: yTop - 7 },
+      jobTitle: { x: xLeft, y: yTop - 8 },
       phone: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING },
-      email: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 4 },
-      github: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 8 },
-      linkedin: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 12 },
+      email: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 6 },
+      github: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 12 },
+      linkedin: { x: xLeft, y: -CARD_HEIGHT / 2 + EDGE_PADDING + 18 },
       qrCode: { x: 0, y: 0, face: 'back' }
     };
 
