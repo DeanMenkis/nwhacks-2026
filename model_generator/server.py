@@ -49,6 +49,7 @@ class Content(BaseModel):
     name: str
     email: str
     jobTitle: str
+    school: Optional[str] = ""
     phoneNumber: Optional[str] = ""
     qrUrl: str
 
@@ -62,16 +63,17 @@ class Position(BaseModel):
 class PositionsMap(BaseModel):
     name: Position
     jobTitle: Position
+    school: Position
     phone: Position
     email: Position
     qrCode: Position
-
 
 class CardRequest(BaseModel):
     metadata: Optional[Dict] = {}
     design: Design
     content: Content
     positions: PositionsMap
+
 
 @app.post("/generate")
 async def generate_card(request: CardRequest):
@@ -113,6 +115,7 @@ async def generate_card(request: CardRequest):
         fields_to_process = [
             ("name", request.content.name, request.positions.name),
             ("jobTitle", request.content.jobTitle, request.positions.jobTitle),
+            ("school", request.content.school, request.positions.school),
             ("email", request.content.email, request.positions.email),
             ("phone", request.content.phoneNumber, request.positions.phone),
         ]
