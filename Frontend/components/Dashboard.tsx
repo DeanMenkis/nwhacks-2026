@@ -141,12 +141,8 @@ export const Dashboard: React.FC = () => {
           <div className="bg-surface-dark border border-white/10 rounded-2xl p-8 max-w-md w-full shadow-2xl shadow-primary/20 flex flex-col items-center text-center space-y-6 transform scale-100 animate-in zoom-in-95 duration-200">
             <div className="relative">
               <div className="absolute inset-0 bg-primary/30 blur-xl rounded-full animate-pulse" />
-              <div className="relative size-20 bg-surface-dark rounded-full flex items-center justify-center border border-white/10 shadow-inner">
-                <span className="material-symbols-outlined text-4xl text-primary animate-spin">settings</span>
-              </div>
-              <div className="absolute top-0 right-0 -mr-1 -mt-1 relative flex h-4 w-4">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-teal opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-4 w-4 bg-accent-teal"></span>
+              <div className="relative size-20 bg-surface-dark rounded-full flex items-center justify-center border border-white/10 shadow-inner group">
+                <span className="material-symbols-outlined text-4xl text-primary animate-[spin_3s_linear_infinite] drop-shadow-[0_0_15px_rgba(120,78,151,0.8)]">settings</span>
               </div>
             </div>
 
@@ -157,8 +153,9 @@ export const Dashboard: React.FC = () => {
               </p>
             </div>
 
-            <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-primary via-accent-teal to-primary w-[200%] animate-[shimmer_2s_infinite_linear]" />
+            <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden relative">
+              {/* Fake progress bar: fills to 90% over 15s */}
+              <div className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary via-accent-teal to-primary w-full origin-left animate-[progress_15s_ease-out_forwards]" />
             </div>
           </div>
         </div>

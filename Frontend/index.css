@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes progress {
+    0% {
+        transform: scaleX(0);
+    }
+
+    20% {
+        transform: scaleX(0.3);
+    }
+
+    50% {
+        transform: scaleX(0.5);
+    }
+
+    100% {
+        transform: scaleX(0.9);
+    }
+}
