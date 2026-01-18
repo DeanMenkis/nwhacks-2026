@@ -14,6 +14,7 @@ export interface CardState {
   color: string;
   fontColor: string;
   font: string;
+  fontBold: boolean;
   filletRadius: number;
   setName: (name: string) => void;
   setEmail: (email: string) => void;
@@ -27,7 +28,7 @@ export interface CardState {
   setQrCodeLink: (link: string) => void;
   setColor: (color: string) => void;
   setFontColor: (color: string) => void;
-  setFont: (font: string) => void;
+  setFontBold: (bold: boolean) => void;
   setFilletRadius: (radius: number) => void;
 }
 

@@ -14,8 +14,8 @@ const COLORS: FilamentColor[] = [
 
 export const Sidebar: React.FC = () => {
   const {
-    name, email, jobTitle, phoneNumber, github, linkedin, showQrCode, showGithub, showLinkedin, qrCodeLink, color, fontColor, font, filletRadius,
-    setName, setEmail, setJobTitle, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setShowGithub, setShowLinkedin, setQrCodeLink, setColor, setFontColor, setFont, setFilletRadius
+    name, email, jobTitle, phoneNumber, github, linkedin, showQrCode, showGithub, showLinkedin, qrCodeLink, color, fontColor, filletRadius, fontBold,
+    setName, setEmail, setJobTitle, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setShowGithub, setShowLinkedin, setQrCodeLink, setColor, setFontColor, setFilletRadius, setFontBold
   } = useCardStore();
 
   return (
@@ -233,33 +233,21 @@ export const Sidebar: React.FC = () => {
 
         <div className="w-full h-px bg-white/5 my-2 mx-4 !w-auto" />
 
-        {/* Font Style */}
-        <div className="px-4">
-          <h3 className="text-white text-lg font-bold leading-tight mb-4">Font Style</h3>
-          <div className="flex flex-col gap-2">
-            {[
-              { name: 'Monocraft', url: 'https://cdn.jsdelivr.net/gh/IdreesInc/Monocraft@main/dist/Monocraft-ttf/Monocraft.ttf' },
-              { name: 'Roboto', url: 'https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2' },
-              { name: 'Playfair', url: 'https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJgsg3bw.woff2' }
-            ].map((f) => (
-              <button
-                key={f.name}
-                onClick={() => setFont(f.url)}
-                className={`
-                  w-full px-4 py-3 rounded-xl border flex items-center justify-between transition-all group
-                  ${font === f.url
-                    ? 'bg-primary/20 border-primary text-white'
-                    : 'bg-white/5 border-white/5 text-white/60 hover:bg-white/10 hover:border-white/10 hover:text-white'
-                  }
-                `}
-              >
-                <span className="font-semibold text-sm">{f.name}</span>
-                {font === f.url && (
-                  <span className="material-symbols-outlined text-primary text-lg">check_circle</span>
-                )}
-              </button>
-            ))}
-          </div>
+        {/* Bold Toggle */}
+        <div className="space-y-4 px-4">
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <div className="relative flex items-center">
+              <input
+                type="checkbox"
+                className="peer sr-only"
+                checked={fontBold}
+                onChange={(e) => setFontBold(e.target.checked)}
+              />
+              <div className="w-10 h-5 bg-white/5 border border-white/10 rounded-full transition-colors peer-checked:bg-primary" />
+              <div className="absolute left-1 top-1 w-3 h-3 bg-white/40 rounded-full transition-transform peer-checked:translate-x-5 peer-checked:bg-white" />
+            </div>
+            <span className="text-sm font-bold text-white/70 group-hover:text-white transition-colors">Bold Text</span>
+          </label>
         </div>
 
         <div className="w-full h-px bg-white/5 my-2 mx-4 !w-auto" />

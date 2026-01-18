@@ -15,6 +15,7 @@ export const useCardStore = create<CardState>((set) => ({
   color: '#784e97', // Default primary purple
   fontColor: '#FFFFFF', // Default white
   font: 'https://cdn.jsdelivr.net/gh/IdreesInc/Monocraft@main/dist/Monocraft-ttf/Monocraft.ttf', // Default Monocraft
+  fontBold: true, // Default bold
   filletRadius: 3, // Default 3mm fillet
   setName: (name) => set({ name }),
   setEmail: (email) => set({ email }),
@@ -28,6 +29,6 @@ export const useCardStore = create<CardState>((set) => ({
   setQrCodeLink: (qrCodeLink) => set({ qrCodeLink }),
   setColor: (color) => set({ color }),
   setFontColor: (fontColor) => set({ fontColor }),
-  setFont: (font) => set({ font }),
+  setFontBold: (fontBold) => set({ fontBold }),
   setFilletRadius: (filletRadius) => set({ filletRadius }),
 }));

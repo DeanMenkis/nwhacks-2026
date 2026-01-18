@@ -12,7 +12,6 @@ const CARD_THICKNESS = 1.6; // 1.6mm thickness (standard PCB/Credit card)
 
 // Layout Constants
 const EDGE_PADDING = 6;
-// const TEXT_COLOR = '#FFFFFF'; // Removed in favor of store state
 
 const QRCodePlane = ({ link, size = 25 }: { link: string; size?: number }) => {
   const [textureUrl, setTextureUrl] = useState<string>('');
@@ -108,7 +107,7 @@ const Card = () => {
       />
 
       {/* Content Group - On top of the extruded surface (z = THICKNESS) */}
-      <group position={[0, 0, CARD_THICKNESS + 0.05]}>
+      <group position={[0, 0, CARD_THICKNESS + 0.05]} key={font}>
 
         {/* Name - Top Left */}
         <DreiText
@@ -116,6 +115,7 @@ const Card = () => {
           fontSize={5}
           color={fontColor}
           font={font}
+          fontWeight="bold"
           anchorX="left"
           anchorY="top"
           maxWidth={CARD_WIDTH - (EDGE_PADDING * 2)}
@@ -129,6 +129,7 @@ const Card = () => {
           fontSize={4}
           color={fontColor}
           font={font}
+          fontWeight="bold"
           anchorX="left"
           anchorY="top"
           maxWidth={CARD_WIDTH - (EDGE_PADDING * 2)}
@@ -144,6 +145,7 @@ const Card = () => {
             fontSize={4}
             color={fontColor}
             font={font}
+            fontWeight="bold"
             anchorX="left"
             anchorY="bottom"
           >
@@ -154,6 +156,7 @@ const Card = () => {
             fontSize={4}
             color={fontColor}
             font={font}
+            fontWeight="bold"
             anchorX="left"
             anchorY="bottom"
           >
@@ -165,6 +168,7 @@ const Card = () => {
               fontSize={4}
               color={fontColor}
               font={font}
+              fontWeight="bold"
               anchorX="left"
               anchorY="bottom"
             >
@@ -177,6 +181,7 @@ const Card = () => {
               fontSize={4}
               color={fontColor}
               font={font}
+              fontWeight="bold"
               anchorX="left"
               anchorY="bottom"
             >
