@@ -42,7 +42,7 @@ const LandingPage: React.FC = () => {
                         <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
                             Bring Your <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-hover to-accent-teal drop-shadow-sm">
-                                LinkedIn
+                                Business Card
                             </span>{' '}
                             to Life
                         </h1>
