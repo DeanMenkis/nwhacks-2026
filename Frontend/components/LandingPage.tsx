@@ -52,7 +52,7 @@ const LandingPage: React.FC = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                             <Link
-                                to="/app"
+                                to="/design"
                                 className="w-full sm:w-auto bg-primary hover:bg-primary-hover active:scale-95 text-white px-8 py-4 rounded-2xl text-base font-bold transition-all shadow-glow hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 group"
                             >
                                 Create Your Card
@@ -158,7 +158,7 @@ const LandingPage: React.FC = () => {
                         Create your card today!
                     </p>
                     <Link
-                        to="/app"
+                        to="/design"
                         className="w-full sm:w-auto bg-primary hover:bg-primary-hover active:scale-95 text-white px-8 py-4 rounded-2xl text-base font-bold transition-all shadow-glow hover:shadow-xl hover:-translate-y-1 inline-flex items-center justify-center gap-2 group"
                     >
                         Get Started

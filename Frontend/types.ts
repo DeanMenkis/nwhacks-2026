@@ -8,6 +8,8 @@ export interface CardState {
   github: string;
   linkedin: string;
   showQrCode: boolean;
+  showGithub: boolean;
+  showLinkedin: boolean;
   qrCodeLink: string;
   color: string;
   fontColor: string;
@@ -19,6 +21,8 @@ export interface CardState {
   setGithub: (github: string) => void;
   setLinkedin: (linkedin: string) => void;
   setShowQrCode: (show: boolean) => void;
+  setShowGithub: (show: boolean) => void;
+  setShowLinkedin: (show: boolean) => void;
   setQrCodeLink: (link: string) => void;
   setColor: (color: string) => void;
   setFontColor: (color: string) => void;

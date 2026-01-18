@@ -55,7 +55,7 @@ const QRCodePlane = ({ link, size = 25 }: { link: string; size?: number }) => {
 };
 
 const Card = () => {
-  const { color, name, email, jobTitle, phoneNumber, filletRadius, showQrCode, qrCodeLink, fontColor } = useCardStore();
+  const { color, name, email, jobTitle, phoneNumber, github, linkedin, filletRadius, showQrCode, showGithub, showLinkedin, qrCodeLink, fontColor } = useCardStore();
 
   const shape = useMemo(() => {
     const s = new THREE.Shape();
@@ -148,7 +148,7 @@ const Card = () => {
             {phoneNumber || '(123) 456-7890'}
           </DreiText>
           <DreiText
-            position={[0, 4, 0]} // Email slightly above
+            position={[0, 4, 0]} // Email
             fontSize={2.5}
             color={fontColor}
             anchorX="left"
@@ -156,6 +156,28 @@ const Card = () => {
           >
             {email || 'email@example.com'}
           </DreiText>
+          {showGithub && (
+            <DreiText
+              position={[0, 8, 0]} // Github
+              fontSize={2.5}
+              color={fontColor}
+              anchorX="left"
+              anchorY="bottom"
+            >
+              {github || 'github.com/username'}
+            </DreiText>
+          )}
+          {showLinkedin && (
+            <DreiText
+              position={[0, 12, 0]} // Linkedin
+              fontSize={2.5}
+              color={fontColor}
+              anchorX="left"
+              anchorY="bottom"
+            >
+              {linkedin || 'linkedin.com/in/username'}
+            </DreiText>
+          )}
         </group>
       </group>
 

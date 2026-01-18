@@ -14,8 +14,8 @@ const COLORS: FilamentColor[] = [
 
 export const Sidebar: React.FC = () => {
   const {
-    name, email, jobTitle, phoneNumber, github, linkedin, showQrCode, qrCodeLink, color, fontColor, filletRadius,
-    setName, setEmail, setJobTitle, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setQrCodeLink, setColor, setFontColor, setFilletRadius
+    name, email, jobTitle, phoneNumber, github, linkedin, showQrCode, showGithub, showLinkedin, qrCodeLink, color, fontColor, filletRadius,
+    setName, setEmail, setJobTitle, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setShowGithub, setShowLinkedin, setQrCodeLink, setColor, setFontColor, setFilletRadius
   } = useCardStore();
 
   return (
@@ -87,24 +87,66 @@ export const Sidebar: React.FC = () => {
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
 
-        <InputGroup
-          label="Github"
-          icon="code"
-          placeholder="github.com/username"
-          value={github}
-          onChange={(e) => setGithub(e.target.value)}
-        />
+        {/* Github Toggle */}
+        <div className="space-y-4">
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <div className="relative flex items-center">
+              <input
+                type="checkbox"
+                className="peer sr-only"
+                checked={showGithub}
+                onChange={(e) => setShowGithub(e.target.checked)}
+              />
+              <div className="w-10 h-5 bg-white/5 border border-white/10 rounded-full transition-colors peer-checked:bg-primary" />
+              <div className="absolute left-1 top-1 w-3 h-3 bg-white/40 rounded-full transition-transform peer-checked:translate-x-5 peer-checked:bg-white" />
+            </div>
+            <span className="text-sm font-bold text-white/70 group-hover:text-white transition-colors">Include Github</span>
+          </label>
 
-        <InputGroup
-          label="Linkedin"
-          icon="share"
-          placeholder="linkedin.com/in/username"
-          value={linkedin}
-          onChange={(e) => setLinkedin(e.target.value)}
-        />
+          {showGithub && (
+            <div className="animate-in fade-in slide-in-from-top-2 duration-200">
+              <InputGroup
+                label="Github"
+                icon="code"
+                placeholder="github.com/username"
+                value={github}
+                onChange={(e) => setGithub(e.target.value)}
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Linkedin Toggle */}
+        <div className="space-y-4">
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <div className="relative flex items-center">
+              <input
+                type="checkbox"
+                className="peer sr-only"
+                checked={showLinkedin}
+                onChange={(e) => setShowLinkedin(e.target.checked)}
+              />
+              <div className="w-10 h-5 bg-white/5 border border-white/10 rounded-full transition-colors peer-checked:bg-primary" />
+              <div className="absolute left-1 top-1 w-3 h-3 bg-white/40 rounded-full transition-transform peer-checked:translate-x-5 peer-checked:bg-white" />
+            </div>
+            <span className="text-sm font-bold text-white/70 group-hover:text-white transition-colors">Include Linkedin</span>
+          </label>
+
+          {showLinkedin && (
+            <div className="animate-in fade-in slide-in-from-top-2 duration-200">
+              <InputGroup
+                label="Linkedin"
+                icon="share"
+                placeholder="linkedin.com/in/username"
+                value={linkedin}
+                onChange={(e) => setLinkedin(e.target.value)}
+              />
+            </div>
+          )}
+        </div>
 
         {/* QR Code Toggle */}
-        <div className="px-4 space-y-4">
+        <div className="space-y-4">
           <label className="flex items-center gap-3 cursor-pointer group">
             <div className="relative flex items-center">
               <input

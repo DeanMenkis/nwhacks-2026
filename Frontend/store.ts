@@ -9,6 +9,8 @@ export const useCardStore = create<CardState>((set) => ({
   github: '',
   linkedin: '',
   showQrCode: false,
+  showGithub: false,
+  showLinkedin: false,
   qrCodeLink: '',
   color: '#784e97', // Default primary purple
   fontColor: '#FFFFFF', // Default white
@@ -20,6 +22,8 @@ export const useCardStore = create<CardState>((set) => ({
   setGithub: (github) => set({ github }),
   setLinkedin: (linkedin) => set({ linkedin }),
   setShowQrCode: (showQrCode) => set({ showQrCode }),
+  setShowGithub: (showGithub) => set({ showGithub }),
+  setShowLinkedin: (showLinkedin) => set({ showLinkedin }),
   setQrCodeLink: (qrCodeLink) => set({ qrCodeLink }),
   setColor: (color) => set({ color }),
   setFontColor: (fontColor) => set({ fontColor }),

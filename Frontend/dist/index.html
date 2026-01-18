@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PrintMyCard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#784e97",
+                        "primary-hover": "#8e62b0",
+                        "accent-teal": "#8FD9D9",
+                        "background-light": "#f3f0ff",
+                        "background-dark": "#1d1a23",
+                        "surface-dark": "#2A2534",
+                        "input-bg": "#211f23",
+                        "input-border": "#48434c",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px rgba(120, 78, 151, 0.3)',
+                        'glow-teal': '0 0 10px rgba(143, 217, 217, 0.2)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar for the dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1d1a23;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #48434c;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #784e97;
+        }
+    </style>
+
+  <script type="module" crossorigin src="/assets/index-BZ35-ZuM.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-ndL2N5Pr.css">
+</head>
+
+<body class="bg-background-dark text-white font-display">
+    <div id="root"></div>
+</body>
+
+</html>
