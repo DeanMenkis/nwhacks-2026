@@ -18,8 +18,8 @@ const DEMO_STATES = [
     },
     {
         name: "Ilia Morozov",
-        jobTitle: "Firmware & Hardware Engineer",
-        school: "@BCIT",
+        jobTitle: "Firmware/Hardware Engineer",
+        school: "@ BCIT",
         email: "iliamorozim@gmail.com",
         phoneNumber: "(778) 868 5019",
         github: "github.com/frosterilia",
@@ -55,8 +55,8 @@ export const LandingThreeScene: React.FC = () => {
     const cardData = {
         ...currentData,
         showQrCode: true,
-        showGithub: true,
-        showLinkedin: true,
+        showGithub: !!currentData.github,
+        showLinkedin: !!currentData.linkedin,
         qrCodeLink: "https://printmycard.com",
         fontColor: "#FFFFFF",
         font: "/fonts/Monocraft-ttf/Monocraft.ttf",
