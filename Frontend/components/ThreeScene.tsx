@@ -175,8 +175,8 @@ export const ThreeScene: React.FC = () => {
       <Canvas>
         <PerspectiveCamera makeDefault position={[0, 45, 120]} fov={45} />
         <OrbitControls
-          enablePan={false}
-          maxPolarAngle={Math.PI / 2.2}
+          enablePan={true}
+          maxPolarAngle={Math.PI}
           minPolarAngle={0}
           target={[0, 0, 0]}
         />
