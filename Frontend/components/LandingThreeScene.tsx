@@ -21,7 +21,7 @@ const DEMO_STATES = [
         jobTitle: "Firmware/Hardware Engineer",
         school: "@ BCIT",
         email: "iliamorozim@gmail.com",
-        phoneNumber: "(778) 868 5019",
+        phoneNumber: "778 868 5019",
         github: "github.com/frosterilia",
         linkedin: "",
         color: "#F472B6", // Pink
@@ -33,7 +33,7 @@ const DEMO_STATES = [
         email: "nlu26@my.bcit.ca",
         phoneNumber: "(778)) 892-2083",
         github: "",
-        linkedin: "linkedin.com/in/ninaplaystime/",
+        linkedin: "linkedin.com/in/ninaplaystime",
         color: "#60A5FA", // Blue
     }
 ];

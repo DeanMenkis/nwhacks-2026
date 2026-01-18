@@ -200,50 +200,57 @@ export const CardModel: React.FC<CardProps> = ({
                         0,
                     ]}
                 >
-                    <DreiText
-                        position={[0, 0, 0]} // Phone at bottom
-                        fontSize={4}
-                        color={fontColor}
-                        font={activeFont}
-                        anchorX="left"
-                        anchorY="bottom"
-                    >
-                        {phoneNumber || '(123) 456-7890'}
-                    </DreiText>
-                    <DreiText
-                        position={[0, 6, 0]} // Email
-                        fontSize={4}
-                        color={fontColor}
-                        font={activeFont}
-                        anchorX="left"
-                        anchorY="bottom"
-                    >
-                        {email || 'email@example.com'}
-                    </DreiText>
-                    {showGithub && (
-                        <DreiText
-                            position={[0, 12, 0]} // Github
-                            fontSize={4}
-                            color={fontColor}
-                            font={activeFont}
-                            anchorX="left"
-                            anchorY="bottom"
-                        >
-                            {github || 'github.com/username'}
-                        </DreiText>
-                    )}
-                    {showLinkedin && (
-                        <DreiText
-                            position={[0, 18, 0]} // Linkedin
-                            fontSize={4}
-                            color={fontColor}
-                            font={activeFont}
-                            anchorX="left"
-                            anchorY="bottom"
-                        >
-                            {linkedin || 'linkedin.com/in/username'}
-                        </DreiText>
-                    )}
+                    {(() => {
+                        const items = [];
+                        const baseSize = 4;
+                        const maxWidth = CARD_WIDTH - EDGE_PADDING * 2;
+
+                        // Helper to calculate font size to fit width
+                        // Monospaced font assumption: char width ~ 0.6 * fontSize
+                        const getFitFontSize = (text: string) => {
+                            if (!text) return baseSize;
+                            const charWidth = baseSize * 0.6;
+                            const estimatedWidth = text.length * charWidth;
+                            if (estimatedWidth > maxWidth) {
+                                return baseSize * (maxWidth / estimatedWidth);
+                            }
+                            return baseSize;
+                        };
+
+                        // Stack items from bottom up
+                        // 1. Phone
+                        if (phoneNumber) items.push({ text: phoneNumber });
+                        else items.push({ text: '(123) 456-7890' }); // Placeholder if empty
+
+                        // 2. Email
+                        if (email) items.push({ text: email });
+                        else items.push({ text: 'email@example.com' });
+
+                        // 3. Github (Optional)
+                        if (showGithub) {
+                            items.push({ text: github || 'github.com/username' });
+                        }
+
+                        // 4. Linkedin (Optional)
+                        if (showLinkedin) {
+                            items.push({ text: linkedin || 'linkedin.com/in/username' });
+                        }
+
+                        // Render items with dynamic Y offsets
+                        return items.map((item, index) => (
+                            <DreiText
+                                key={index}
+                                position={[0, index * 6, 0]} // 6mm spacing logic
+                                fontSize={getFitFontSize(item.text)}
+                                color={fontColor}
+                                font={activeFont}
+                                anchorX="left"
+                                anchorY="bottom"
+                            >
+                                {item.text}
+                            </DreiText>
+                        ));
+                    })()}
                 </group>
             </group>
 
