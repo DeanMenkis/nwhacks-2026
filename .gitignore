@@ -4,3 +4,4 @@ venv
 .vite/
 deps
 .svg
+.3mf
