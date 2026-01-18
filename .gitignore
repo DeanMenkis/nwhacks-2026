@@ -5,3 +5,4 @@ venv
 deps
 .svg
 .3mf
+__pycache__
