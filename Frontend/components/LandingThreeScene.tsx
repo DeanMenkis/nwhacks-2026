@@ -28,7 +28,7 @@ const DEMO_STATES = [
     },
     {
         name: "Nina Lu",
-        jobTitle: "Hacker",
+        jobTitle: "Electrical Power",
         school: "@ BCIT",
         email: "nlu26@my.bcit.ca",
         phoneNumber: "(778)) 892-2083",

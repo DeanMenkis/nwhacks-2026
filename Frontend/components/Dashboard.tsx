@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import React, { useState } from 'react';
 import { useCardStore } from '../store';
 import { Sidebar } from './Sidebar';
@@ -6,6 +7,7 @@ import { ActionPanel } from './ActionPanel';
 
 export const Dashboard: React.FC = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const {
     name,
     email,
@@ -23,7 +25,7 @@ export const Dashboard: React.FC = () => {
     filletRadius,
   } = useCardStore();
 
-  const handleGenerateJson = () => {
+  const handleGenerateJson = async () => {
     const CARD_WIDTH = 85;
     const CARD_HEIGHT = 54;
     const CARD_THICKNESS = 1.6;
@@ -68,11 +70,81 @@ export const Dashboard: React.FC = () => {
       positions
     };
 
-    console.log(JSON.stringify(payload, null, 2));
+    setIsGenerating(true);
+
+    try {
+      // Use VITE_API_URL from environment variables (set in Vercel)
+      // Note: User confirmed /generate is manually appended to the env var or should be treated as such.
+      const apiUrl = import.meta.env.VITE_API_URL;
+
+      if (!apiUrl) {
+        console.error("VITE_API_URL is not defined");
+        alert("Configuration Error: API URL not found. Please check environment variables.");
+        return;
+      }
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420" // This bypasses the warning page
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Generation failed: ${response.statusText}`);
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${(name || 'card').replace(/\s+/g, '_')}.3mf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+    } catch (error) {
+      console.error("3MF Generation Error:", error);
+      alert("Failed to generate 3MF file. Please try again or check the console for details.");
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
     <div className="flex h-screen w-full bg-background-dark overflow-hidden">
+
+      {/* Loading Overlay */}
+      {isGenerating && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-surface-dark border border-white/10 rounded-2xl p-8 max-w-md w-full shadow-2xl shadow-primary/20 flex flex-col items-center text-center space-y-6 transform scale-100 animate-in zoom-in-95 duration-200">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/30 blur-xl rounded-full animate-pulse" />
+              <div className="relative size-20 bg-surface-dark rounded-full flex items-center justify-center border border-white/10 shadow-inner">
+                <span className="material-symbols-outlined text-4xl text-primary animate-spin">settings</span>
+              </div>
+              <div className="absolute top-0 right-0 -mr-1 -mt-1 relative flex h-4 w-4">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-teal opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-accent-teal"></span>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold text-white tracking-tight">Generating 3D Model</h3>
+              <p className="text-white/60 text-sm leading-relaxed px-4">
+                The download will begin automatically. Please wait up to 30 seconds while the 3MF file validates and generates.
+              </p>
+            </div>
+
+            <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-primary via-accent-teal to-primary w-[200%] animate-[shimmer_2s_infinite_linear]" />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Mobile Overlay */}
       {isSidebarOpen && (
@@ -117,7 +189,7 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        <ActionPanel onGenerate={handleGenerateJson} />
+        <ActionPanel onGenerate={handleGenerateJson} isGenerating={isGenerating} />
 
       </main>
     </div>
