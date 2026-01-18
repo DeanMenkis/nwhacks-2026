@@ -9,6 +9,7 @@ import {
     Sliders,
     Settings2
 } from 'lucide-react';
+import { LandingThreeScene } from './LandingThreeScene';
 
 const LandingPage: React.FC = () => {
     return (
@@ -64,31 +65,10 @@ const LandingPage: React.FC = () => {
 
                     </div>
 
-                    {/* Hero Visual (Cube Scene) */}
-                    <div className="relative h-[400px] lg:h-[600px] flex items-center justify-center perspective-container w-full">
-                        <div className="absolute inset-0 grid-floor pointer-events-none"></div>
-                        <div className="cube-scene animate-float">
-                            <div className="cube animate-spin-slow">
-                                <div className="cube-face face-front text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
-                                    FRONT
-                                </div>
-                                <div className="cube-face face-back text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
-                                    BACK
-                                </div>
-                                <div className="cube-face face-right text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
-                                    RIGHT
-                                </div>
-                                <div className="cube-face face-left text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
-                                    LEFT
-                                </div>
-                                <div className="cube-face face-top text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
-                                    TOP
-                                </div>
-                                <div className="cube-face face-bottom text-accent-teal/70 font-mono text-sm font-bold tracking-widest">
-                                    BOTTOM
-                                </div>
-                            </div>
-                        </div>
+                    {/* Hero Visual (3D Card Scene) */}
+                    <div className="relative h-[400px] lg:h-[600px] flex items-center justify-center w-full cursor-move">
+                        <div className="absolute inset-0 grid-floor pointer-events-none opacity-50"></div>
+                        <LandingThreeScene />
                     </div>
                 </div>
             </header>
