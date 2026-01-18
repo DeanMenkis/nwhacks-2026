@@ -4,6 +4,7 @@ export interface CardState {
   name: string;
   email: string;
   jobTitle: string;
+  school: string;
   phoneNumber: string;
   github: string;
   linkedin: string;
@@ -19,6 +20,7 @@ export interface CardState {
   setName: (name: string) => void;
   setEmail: (email: string) => void;
   setJobTitle: (jobTitle: string) => void;
+  setSchool: (school: string) => void;
   setPhoneNumber: (phone: string) => void;
   setGithub: (github: string) => void;
   setLinkedin: (linkedin: string) => void;

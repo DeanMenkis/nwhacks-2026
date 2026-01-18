@@ -14,8 +14,8 @@ const COLORS: FilamentColor[] = [
 
 export const Sidebar: React.FC = () => {
   const {
-    name, email, jobTitle, phoneNumber, github, linkedin, showQrCode, showGithub, showLinkedin, qrCodeLink, color, fontColor, filletRadius, fontBold,
-    setName, setEmail, setJobTitle, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setShowGithub, setShowLinkedin, setQrCodeLink, setColor, setFontColor, setFilletRadius, setFontBold
+    name, email, jobTitle, school, phoneNumber, github, linkedin, showQrCode, showGithub, showLinkedin, qrCodeLink, color, fontColor, filletRadius, fontBold,
+    setName, setEmail, setJobTitle, setSchool, setPhoneNumber, setGithub, setLinkedin, setShowQrCode, setShowGithub, setShowLinkedin, setQrCodeLink, setColor, setFontColor, setFilletRadius, setFontBold
   } = useCardStore();
 
   return (
@@ -76,6 +76,14 @@ export const Sidebar: React.FC = () => {
           placeholder="Enter your bio"
           value={jobTitle}
           onChange={(e) => setJobTitle(e.target.value)}
+        />
+
+        <InputGroup
+          label="School"
+          icon="school"
+          placeholder="Enter your school"
+          value={school}
+          onChange={(e) => setSchool(e.target.value)}
         />
 
         <InputGroup

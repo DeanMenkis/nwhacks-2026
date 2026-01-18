@@ -54,7 +54,7 @@ const QRCodePlane = ({ link, size = 25 }: { link: string; size?: number }) => {
 };
 
 const Card = () => {
-  const { color, name, email, jobTitle, phoneNumber, github, linkedin, filletRadius, showQrCode, showGithub, showLinkedin, qrCodeLink, fontColor, font, fontBold } = useCardStore();
+  const { color, name, email, jobTitle, school, phoneNumber, github, linkedin, filletRadius, showQrCode, showGithub, showLinkedin, qrCodeLink, fontColor, font, fontBold } = useCardStore();
 
   const activeFont = fontBold
     ? '/fonts/Monocraft-ttf/weights/Monocraft-Bold.ttf'
@@ -138,6 +138,20 @@ const Card = () => {
           fillOpacity={0.8}
         >
           {jobTitle || 'Job Title'}
+        </DreiText>
+
+        {/* School - Below Job Title */}
+        <DreiText
+          position={[-CARD_WIDTH / 2 + EDGE_PADDING, CARD_HEIGHT / 2 - EDGE_PADDING - 14, 0]}
+          fontSize={4}
+          color={fontColor}
+          font={activeFont}
+          anchorX="left"
+          anchorY="top"
+          maxWidth={CARD_WIDTH - (EDGE_PADDING * 2)}
+          fillOpacity={0.8}
+        >
+          {school || 'School / University'}
         </DreiText>
 
         {/* Contact Info Group - Bottom Left */}
