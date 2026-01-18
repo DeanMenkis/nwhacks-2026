@@ -89,21 +89,6 @@ const LandingPage: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-
-
-
-                        {/* Floating Export Card */}
-                        <div className="absolute bottom-1/4 left-0 lg:left-10 animate-float" style={{ animationDelay: '2s' }}>
-                            <div className="bg-surface-dark/80 backdrop-blur-md border border-white/10 p-4 rounded-2xl shadow-xl flex items-center gap-3">
-                                <div className="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
-                                    <Package className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <div className="text-xs text-white/50 uppercase font-bold">Export</div>
-                                    <div className="text-sm font-bold text-white">Generative 3MF</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </header>
@@ -112,10 +97,10 @@ const LandingPage: React.FC = () => {
             <section className="py-24 bg-surface-dark/30 relative">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl lg:text-4xl font-extrabold mb-6">Everything you need to print</h2>
+                        <h2 className="text-3xl lg:text-4xl font-extrabold mb-6">Everything you need to design your Card</h2>
                         <p className="text-lg text-white/50">
-                            Streamline your additive manufacturing process with our intuitive tools designed
-                            specifically for the modern maker community.
+                            Design your cards with ease using our intuitive dashboard.
+                            Designed by you. Created by us.
                         </p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
@@ -128,8 +113,8 @@ const LandingPage: React.FC = () => {
                                 Easy Configuration
                             </h3>
                             <p className="text-white/50 leading-relaxed">
-                                Effortlessly setup your print jobs. Customize filament colors, job titles, and detailed
-                                parameters with our playful UI.
+                                Effortlessly design your cards. Customize colors, titles, text fields, fonts and other
+                                parameters with our playful UI. Or choose from a selection of pre-made templates.
                             </p>
                         </div>
 
@@ -143,7 +128,7 @@ const LandingPage: React.FC = () => {
                             </h3>
                             <p className="text-white/50 leading-relaxed">
                                 Visualize before you materialize. Our WebGL powered engine gives you a real-time,
-                                interactive preview of your print bed.
+                                interactive preview of your card.
                             </p>
                         </div>
 
@@ -156,8 +141,8 @@ const LandingPage: React.FC = () => {
                                 One-click 3MF Export
                             </h3>
                             <p className="text-white/50 leading-relaxed">
-                                From screen to machine in a single click. Generate production-ready 3MF files
-                                optimized for your specific hardware.
+                                From screen to file in a single click. Generate production-ready 3MF files
+                                optimized for printing.
                             </p>
                         </div>
                     </div>
@@ -168,9 +153,9 @@ const LandingPage: React.FC = () => {
             <section className="py-24 relative overflow-hidden">
                 <div className="absolute inset-0 bg-primary/5"></div>
                 <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-                    <h2 className="text-4xl lg:text-5xl font-extrabold mb-8">Ready to start printing?</h2>
+                    <h2 className="text-4xl lg:text-5xl font-extrabold mb-8">Ready to start designing?</h2>
                     <p className="text-xl text-white/60 mb-10">
-                        Join thousands of designers and engineers who use LinkedOut to manage their 3D workflow.
+                        Create your card today!
                     </p>
                     <Link
                         to="/app"
