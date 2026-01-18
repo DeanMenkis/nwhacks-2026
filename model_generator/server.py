@@ -28,7 +28,7 @@ app.add_middleware(
 DEFAULT_FONT = os.environ.get("CARD_FONT", "Monocraft")
 DEFAULT_FONT_PATH = os.path.join(os.path.dirname(__file__), "fonts/Monocraft-Bold.ttf")
 DEFAULT_DEPTH = 0.4
-DEFAULT_QR_MODULE_SIZE = 1.2
+DEFAULT_QR_MODULE_SIZE = 1.35
 DEFAULT_QR_BORDER = 2
 
 # Models match the provided JSON structure
