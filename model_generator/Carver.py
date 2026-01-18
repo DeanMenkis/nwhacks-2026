@@ -91,7 +91,7 @@ class Carver:
             return self.mesh, text_mesh
         return self.mesh
     
-    def carve_qr(self, x, y, url, module_size=None, border=None):
+    def carve_qr(self, x, y, url, module_size=None, border=None, side="top"):
         self._ensure_base_mesh(self.box_extents)
 
         module_boxes = list(
@@ -101,6 +101,7 @@ class Carver:
                 url,
                 module_size=module_size,
                 border=border,
+                side=side,
             )
         )
         if not module_boxes:
@@ -146,13 +147,14 @@ class Carver:
 
         return self.mesh
 
-    def fill_in_qr(self, x, y, url, module_size=None, border=None):
+    def fill_in_qr(self, x, y, url, module_size=None, border=None, side="top"):
         return self.qr_generator.build_qr_mesh(
             x,
             y,
             url,
             module_size=module_size,
             border=border,
+            side=side,
         )
 
     def fill_in_text(

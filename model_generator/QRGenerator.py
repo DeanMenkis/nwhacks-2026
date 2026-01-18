@@ -33,11 +33,13 @@ class QRGenerator:
     def qr_matrix(self, url, border=None):
         return self._qr_matrix(url, border=border)
 
-    def iter_module_boxes(self, x, y, url, module_size=None, border=None):
+    def iter_module_boxes(self, x, y, url, module_size=None, border=None, side="top"):
         if module_size is None:
             module_size = self.module_size
         if module_size <= 0:
             raise ValueError("module_size must be positive.")
+        if side not in {"top", "bottom"}:
+            raise ValueError("side must be 'top' or 'bottom'.")
 
         matrix = self._qr_matrix(url, border=border)
         size = len(matrix)
@@ -45,7 +47,10 @@ class QRGenerator:
         min_x = x - (total_size / 2.0)
         max_y = y + (total_size / 2.0)
         top_z = self.box_extents[2] / 2.0
-        z_min = top_z - self.depth
+        if side == "top":
+            z_min = top_z - self.depth
+        else:
+            z_min = -top_z
 
         for row in range(size):
             for col in range(size):
@@ -84,11 +89,13 @@ class QRGenerator:
         padded.extend([padding_row[:] for _ in range(border)])
         return padded
 
-    def build_qr_mesh(self, x, y, url, module_size=None, border=None):
+    def build_qr_mesh(self, x, y, url, module_size=None, border=None, side="top"):
         if module_size is None:
             module_size = self.module_size
         if module_size <= 0:
             raise ValueError("module_size must be positive.")
+        if side not in {"top", "bottom"}:
+            raise ValueError("side must be 'top' or 'bottom'.")
 
         matrix = self._qr_matrix(url, border=border)
         size = len(matrix)
@@ -96,7 +103,10 @@ class QRGenerator:
         top_z = self.box_extents[2] / 2.0
         min_x = x - (total_size / 2.0)
         max_y = y + (total_size / 2.0)
-        z_center = top_z - (self.depth / 2.0)
+        if side == "top":
+            z_center = top_z - (self.depth / 2.0)
+        else:
+            z_center = -top_z + (self.depth / 2.0)
 
         box_extents = np.array([module_size, module_size, self.depth], dtype=float)
         meshes = []

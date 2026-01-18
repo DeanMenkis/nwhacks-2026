@@ -61,12 +61,14 @@ try:
         0,
         0,
         url=QR_URL,
+        side = "bottom"
     )
 
     qr_mesh = carver.fill_in_qr(
         0,
         0,
         url=QR_URL,
+        side = "bottom"
     )
 
     scene = trimesh.Scene()
@@ -79,6 +81,6 @@ try:
 
 except FileNotFoundError as exc:
     raise RuntimeError("OpenSCAD not found in PATH.") from exc
-# scene.show()
+scene.show()
 
-scene.export(OUTPUT_3MF)
+# scene.export(OUTPUT_3MF)
