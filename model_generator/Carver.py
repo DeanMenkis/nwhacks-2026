@@ -9,12 +9,26 @@ from QRGenerator import QRGenerator
 
 
 class Carver:
-    def __init__(self, box_extents, font, depth):
+    def __init__(
+        self,
+        box_extents,
+        font,
+        depth,
+        qr_module_size=1.0,
+        qr_border=4,
+        qr_error_correction=None,
+    ):
         self.font = font
         self.depth = depth
         self.box_extents = box_extents
         self.mesh = None
-        self.qr_generator = QRGenerator(self.box_extents, self.depth)
+        self.qr_generator = QRGenerator(
+            self.box_extents,
+            self.depth,
+            module_size=qr_module_size,
+            border=qr_border,
+            error_correction=qr_error_correction,
+        )
 
     def _ensure_base_mesh(self, box_extents):
         if self.box_extents is None:
@@ -131,6 +145,15 @@ class Carver:
             self.mesh = trimesh.load(result_path, force="mesh")
 
         return self.mesh
+
+    def fill_in_qr(self, x, y, url, module_size=None, border=None):
+        return self.qr_generator.build_qr_mesh(
+            x,
+            y,
+            url,
+            module_size=module_size,
+            border=border,
+        )
 
     def fill_in_text(
         self,

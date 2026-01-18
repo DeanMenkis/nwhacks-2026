@@ -14,7 +14,7 @@ class QRGenerator:
         self,
         box_extents,
         depth,
-        module_size=5.0,
+        module_size=1.0,
         border=4,
         error_correction=None,
     ):
