@@ -121,6 +121,7 @@ async def generate_card(request: CardRequest):
         ]
 
         text_meshes_for_scene = []
+        meshes_to_subtract = []
 
         for field_name, text_value, position in fields_to_process:
             if not text_value:
@@ -129,14 +130,7 @@ async def generate_card(request: CardRequest):
             # Set text height based on field
             current_text_height = 5.0 if field_name == "name" else 4.0
 
-            # Create the text mesh
-            box_mesh = carver.carve_text(
-                position.x,
-                position.y,
-                text=text_value,
-                text_height=current_text_height
-                )
-            
+            # Generate the text mesh (positive volume)
             txt_mesh = carver.fill_in_text(
                 position.x,
                 position.y,
@@ -144,18 +138,26 @@ async def generate_card(request: CardRequest):
                 text_height=current_text_height,
             )
 
+            # For carving text, we typically just subtract this same mesh (or a slightly deeper one if desired, 
+            # but Carver.carve_text logic used the same fill_in_text mesh for subtraction).
+            # So we add it to the subtraction list.
+            meshes_to_subtract.append(txt_mesh)
+            
+            # Also keep it for the scene
             text_meshes_for_scene.append(txt_mesh)
 
         # Process QR Code
         qr_pos = request.positions.qrCode
         qr_side = get_qr_side_position(qr_pos.face)
-
-        box_mesh = carver.carve_qr(
+        
+        # Get QR cutout mesh
+        qr_cutout_mesh = carver.generate_qr_cutout_mesh(
             qr_pos.x,
             qr_pos.y,
             url=request.content.qrUrl,
             side=qr_side
         )
+        meshes_to_subtract.append(qr_cutout_mesh)
 
         qr_mesh = carver.fill_in_qr(
             qr_pos.x,
@@ -163,6 +165,9 @@ async def generate_card(request: CardRequest):
             url=request.content.qrUrl,
             side=qr_side
         )
+        
+        # Apply all subtractions in one go
+        box_mesh = carver.apply_difference(meshes_to_subtract)
 
         # Assemble Scene
         scene = trimesh.Scene()
