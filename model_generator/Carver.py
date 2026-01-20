@@ -1,6 +1,9 @@
 import subprocess
 import tempfile
+import os
 from pathlib import Path
+
+OPENSCAD_EXEC = os.environ.get("OPENSCAD_EXEC", "openscad")
 
 import numpy as np
 import trimesh
@@ -67,7 +70,7 @@ class Carver:
             )
 
             subprocess.run(
-                ["openscad", "-o", str(result_path), str(scad_path)],
+                [OPENSCAD_EXEC, "-o", str(result_path), str(scad_path)],
                 check=True,
             )
 
@@ -131,7 +134,7 @@ class Carver:
             )
 
             subprocess.run(
-                ["openscad", "-o", str(result_path), str(scad_path)],
+                [OPENSCAD_EXEC, "-o", str(result_path), str(scad_path)],
                 check=True,
             )
 
@@ -180,7 +183,7 @@ class Carver:
             scad_path.write_text(scad_script, encoding="utf-8")
 
             subprocess.run(
-                ["openscad", "-o", str(result_path), str(scad_path)],
+                [OPENSCAD_EXEC, "-o", str(result_path), str(scad_path)],
                 check=True,
             )
 
@@ -226,7 +229,7 @@ class Carver:
             scad_path.write_text("\n".join(scad_lines), encoding="utf-8")
 
             subprocess.run(
-                ["openscad", "-o", str(result_path), str(scad_path)],
+                [OPENSCAD_EXEC, "-o", str(result_path), str(scad_path)],
                 check=True,
             )
 
@@ -266,7 +269,7 @@ class Carver:
             scad_path.write_text("\n".join(scad_script), encoding="utf-8")
 
             subprocess.run(
-                ["openscad", "-o", str(result_path), str(scad_path)],
+                [OPENSCAD_EXEC, "-o", str(result_path), str(scad_path)],
                 check=True,
             )
 
@@ -320,7 +323,7 @@ class Carver:
             )
 
             subprocess.run(
-                ["openscad", "-o", str(result_path), str(scad_path)],
+                [OPENSCAD_EXEC, "-o", str(result_path), str(scad_path)],
                 check=True,
             )
 

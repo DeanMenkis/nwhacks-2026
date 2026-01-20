@@ -63,7 +63,7 @@ class Position(BaseModel):
 class PositionsMap(BaseModel):
     name: Position
     jobTitle: Position
-    school: Position
+    school: Optional[Position] = None
     phone: Position
     email: Position
     qrCode: Position
