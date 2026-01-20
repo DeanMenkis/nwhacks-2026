@@ -1,0 +1,63 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "timestamp": "2026-01-18T10:53:21.180Z",
+        "appName": "PrintMyCard"
+    },
+    "design": {
+        "color": "#784e97",
+        "font": "/fonts/Monocraft-ttf/Monocraft.ttf",
+        "fontColor": "#FFFFFF",
+        "filletRadius": 3,
+        "thickness": 1.6,
+        "dimensions": {
+            "width": 85,
+            "height": 54
+        }
+    },
+    "content": {
+        "name": "Nina Lu",
+        "email": "iliamorozim@gmail.com",
+        "jobTitle": "Firmware Engineer",
+        "school": "@ BCIT",
+        "phoneNumber": "770-868-5019",
+        "github": null,
+        "linkedin": null,
+        "qrUrl": "https://www.linkedin.com/in/ilia-moroz-9b805a257/"
+    },
+    "positions": {
+        "name": {
+            "x": -36.5,
+            "y": 21
+        },
+        "jobTitle": {
+            "x": -36.5,
+            "y": 13
+        },
+        "school": {
+            "x": -36.5,
+            "y": 7
+        },
+        "phone": {
+            "x": -36.5,
+            "y": -21
+        },
+        "email": {
+            "x": -36.5,
+            "y": -15
+        },
+        "github": {
+            "x": -36.5,
+            "y": -9
+        },
+        "linkedin": {
+            "x": -36.5,
+            "y": -3
+        },
+        "qrCode": {
+            "x": 0,
+            "y": 0,
+            "face": "back"
+        }
+    }
+}
