@@ -3,7 +3,24 @@ import tempfile
 import os
 from pathlib import Path
 
-OPENSCAD_EXEC = os.environ.get("OPENSCAD_EXEC", "openscad")
+import shutil
+import platform
+
+OPENSCAD_EXEC = os.environ.get("OPENSCAD_EXEC")
+
+if not OPENSCAD_EXEC:
+    # Try finding it in path
+    OPENSCAD_EXEC = shutil.which("openscad")
+
+if not OPENSCAD_EXEC and platform.system() == "Windows":
+    # Fallback to default Windows install location
+    default_win_path = Path("C:/Program Files/OpenSCAD/openscad.exe")
+    if default_win_path.exists():
+        OPENSCAD_EXEC = str(default_win_path)
+
+if not OPENSCAD_EXEC:
+    # Final fallback, though likely to fail if not found above
+    OPENSCAD_EXEC = "openscad"
 
 import numpy as np
 import trimesh
