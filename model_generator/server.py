@@ -128,7 +128,7 @@ async def generate_card(request: CardRequest):
                 continue
                 
             # Set text height based on field
-            current_text_height = 4.5 if field_name == "name" else 3.5
+            current_text_height = 4.5 if field_name == "name" else 3.1
 
             # Generate the text mesh (positive volume) - Standard depth for subtraction
             txt_mesh_subtraction = carver.fill_in_text(
